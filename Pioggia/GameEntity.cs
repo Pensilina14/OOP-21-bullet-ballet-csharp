@@ -23,7 +23,7 @@
 
         public Dimension2D GetDimension()
         {
-            throw new NotImplementedException();
+            return this.dimension;
         }
 
         public Baiocchi.Environment GetGameEnvironment()

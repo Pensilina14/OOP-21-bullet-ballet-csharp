@@ -2,5 +2,8 @@
 {
     internal interface Pair
     {
+        double getX();
+        double getY();
+        double getPair();
     }
 }
