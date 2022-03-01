@@ -1,4 +1,6 @@
-﻿namespace OOP21_task_cSharp.Baiocchi
+﻿using OOP21_task_cSharp.Pioggia;
+
+namespace OOP21_task_cSharp.Baiocchi
 {
     /// <summary>
     /// This interface wraps all the virtual game world and permits interaction
@@ -26,10 +28,6 @@
         /// </summary>
         /// <param name="targetPos">PhysicalObject to delete.</param>
         /// <returns>true if operation had success, false otherwise.</returns>
-        boolean deleteObjByPosition(IImmutablePosition2D targetPos);
-        /// <summary>
-        /// Updates the environment.
-        /// </summary>
-        void updateState();
+        bool deleteObjByPosition(IMutablePosition2D targetPos);
     }
 }
