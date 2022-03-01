@@ -1,6 +1,6 @@
 ﻿namespace OOP21_task_cSharp.Pioggia
 {
-    internal interface MutablePosition2D
+    internal interface IMutablePosition2D
     {
         Pair GetCoordinates();
         double GetX();
