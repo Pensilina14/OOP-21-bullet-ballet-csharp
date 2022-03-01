@@ -36,7 +36,7 @@
             return this.mass;
         }
 
-        public MutablePosition2D GetPosition()
+        public IMutablePosition2D GetPosition()
         {
             return this.speedVector.GetPosition();
         }

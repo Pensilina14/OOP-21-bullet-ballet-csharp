@@ -2,7 +2,7 @@
 {
     internal interface PhysicalObject
     {
-        MutablePosition2D GetPosition();
+        IMutablePosition2D GetPosition();
         SpeedVector2D GetSpeedVector();
         bool MoveUp(double y);
         void MoveDown(double y);

@@ -5,6 +5,6 @@
         double GetSpeed();
         void VectorSum(double x, double y);
         void NoSpeedVectorSum(double x, double y);
-        MutablePosition2D GetPosition();
+        IMutablePosition2D GetPosition();
     }
 }
