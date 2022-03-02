@@ -20,34 +20,36 @@ namespace OOP21_task_cSharp.Rengo
         //TODO: private const ScoreSystem _currentScore;
 
         private static const Random s_rand = new Random();
-        private static const double MAX = 100.0;
+        private static const double s_max = 100.0;
 
-        public Player(string name, OOP21_task_cSharp.Pioggia.Dimension2D dimension, 
-            SpeedVector2D vector, double mass) //TODO: + Environment environment
+        public Player(string name, OOP21_task_cSharp.Pioggia.Dimension2D dimension,
+            OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) 
         {
             this._name = name;
             this._health = 100.0;
             //TODO: this._weapon = empty;
         }
 
-        public Player(string name, double health, Dimension2D dimension,
-            SpeedVector2D vector, double mass) // + Environment environment
+        public Player(string name, double health, OOP21_task_cSharp.Pioggia.Dimension2D dimension,
+            OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) 
         {
             this._name = name;
             this._health = health;
             //TODO: this._weapon = empty;
         }
 
-        public Player(EntityList playerType, Dimension2D dimension,
-            SpeedVector2D vector, double mass) //TODO: + Environment environment
+        public Player(EntityList playerType, OOP21_task_cSharp.Pioggia.Dimension2D dimension,
+            OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment,
+            double mass) 
         {
             this._playerType = playerType;
 
             SetPlayerType();
         }
 
-        public Player(Dimension2D dimension,
-            SpeedVector2D vector, double mass) //TODO: + Environment environment
+        public Player(OOP21_task_cSharp.Pioggia.Dimension2D dimension,
+            OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment,
+            double mass) 
         {
             SetRandomPlayer();
             SetPlayerType();
@@ -75,19 +77,19 @@ namespace OOP21_task_cSharp.Rengo
                     minHealth = 80.0;
                     this._name = "Player1";
                     //TODO: Weapon
-                    this._health = s_rand.Next(minHealth, MAX);
+                    this._health = s_rand.Next(minHealth, s_max);
                     break;
                 case Characters.PLAYER2:
                     minHealth = 65.0;
                     this._name = "Player2";
                     //TODO: Weapon
-                    this._health = s_rand.Next(minHealth, MAX);
+                    this._health = s_rand.Next(minHealth, s_max);
                     break;
                 case Characters.PLAYER3:
                     minHealth = 50.0;
                     this._name = "Player3";
                     //TODO: Weapon
-                    this._health = s_rand.Next(minHealth, MAX);
+                    this._health = s_rand.Next(minHealth, s_max);
                     break;
                 default:
                     break;
