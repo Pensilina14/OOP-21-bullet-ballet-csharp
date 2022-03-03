@@ -1,6 +1,6 @@
 ﻿namespace OOP21_task_cSharp.Pioggia
 {
-    internal class GameEntity : PhysicalObject
+    internal class GameEntity : IPhysicalObject
     {
         private const double MS_TO_S = 1;
         private readonly SpeedVector2D speedVector;
@@ -63,20 +63,22 @@
 
         public bool MoveLeft(double x)
         {
-            throw new NotImplementedException();
+            return this.Move(this.GetPosition.getX() - x - this.GetDimension().GetWidth() >= 0);
         }
 
         public bool MoveRight(double x)
         {
-            throw new NotImplementedException();
+            return this.Move(this.GetPosition().GetX() + x + this.GetDimension().GetWidth()
+                <= this.gameEnvironment.GetDimension().GetWidth(), x, 0);
         }
 
         public bool MoveUp(double y)
         {
-            throw new NotImplementedException();
+            return this.Move(this.GetPosition().getY() - y - this.GetDimension().GetHeight()
+                >= this.gameEnvironment.getDimension().GetHeight(), 0, y);
         }
 
-        private bool move(bool condition, double x, double y)
+        private bool Move(bool condition, double x, double y)
         {
             if (condition)
             {
