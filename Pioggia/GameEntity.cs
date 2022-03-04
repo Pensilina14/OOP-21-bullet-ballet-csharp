@@ -34,32 +34,17 @@
 
         public bool HasLanded => this._landed;
 
-        public void Land()
-        {
-            this._landed = true;
-        }
+        public void Land() => this._landed = true;
 
-        public void MoveDown(double y)
-        {
-            this._speedVector.VectorSum(0, y);
-        }
+        public void MoveDown(double y) => this._speedVector.VectorSum(0, y);
 
-        public bool MoveLeft(double x)
-        {
-            return this.Move(this.Position.GetX() - x - this.GetDimension().GetWidth() >= 0, x, 0);
-        }
+        public bool MoveLeft(double x) => this.Move(this.Position.GetX() - x - this.GetDimension().GetWidth() >= 0, x, 0);
 
-        public bool MoveRight(double x)
-        {
-            return this.Move(this.Position.GetX() + x + this.GetDimension().GetWidth()
+        public bool MoveRight(double x) => this.Move(this.Position.GetX() + x + this.GetDimension().GetWidth()
                 <= this._gameEnvironment.getDimension().GetWidth(), x, 0);
-        }
 
-        public bool MoveUp(double y)
-        {
-            return this.Move(this.Position.GetY() - y - this.GetDimension().GetHeight()
+        public bool MoveUp(double y) => this.Move(this.Position.GetY() - y - this.GetDimension().GetHeight()
                 >= this._gameEnvironment.getDimension().GetHeight(), 0, y);
-        }
 
         private bool Move(bool condition, double x, double y)
         {
@@ -76,9 +61,6 @@
             this._landed = false;
         }
 
-        public void UpdateState()
-        {
-            this._speedVector.NoSpeedVectorSum(-MS_TO_S, 0);
-        }
+        public void UpdateState() => this._speedVector.NoSpeedVectorSum(-MS_TO_S, 0);
     }
 }
