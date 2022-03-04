@@ -6,7 +6,7 @@ namespace OOP21_task_cSharp.Baiocchi
     /// This interface wraps all the virtual game world and permits interaction
     /// between objects inside a virtual map.
     /// </summary>
-    internal interface IEnvironment
+    public interface IEnvironment
     {
         /// <summary>
         /// Getter for Environment's gravity.
@@ -17,7 +17,7 @@ namespace OOP21_task_cSharp.Baiocchi
         /// Getter for Environment's dimensions.
         /// </summary>
         /// <returns>Environment's dimensions.</returns>
-        Dimension2D getDimension();
+        IDimension2D getDimension();
         /// <summary>
         /// Return the EntityManager used by this environment.
         /// </summary>

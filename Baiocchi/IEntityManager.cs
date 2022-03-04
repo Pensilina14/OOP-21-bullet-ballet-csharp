@@ -11,7 +11,7 @@ namespace OOP21_task_cSharp.Baiocchi
     /// This is a game-specific interface so it is supposed to 
     /// give out all the different entities of the game.
     /// </summary>
-    internal interface IEntityManager
+    public interface IEntityManager
     {
         /// <summary>
         /// Returns the player.
