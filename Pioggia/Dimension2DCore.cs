@@ -13,14 +13,8 @@ namespace OOP21_bullet_ballet_cSharp.Pioggia
             this._width = width;
         }
 
-        public double GetHeight()
-        {
-            return this._height;
-        }
+        public double Height => this._height;
 
-        public double GetWidth()
-        {
-            return this._width;
-        }
+        public double Width => this._width;
     }
 }

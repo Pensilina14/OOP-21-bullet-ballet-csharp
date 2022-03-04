@@ -19,7 +19,7 @@ namespace OOP21_task_cSharp.Baiocchi
                 _container.Add(entity, new List<TX>());
             }
         }
-        
+
         public bool IsEmpty()
         {
             foreach (IList<TX>? value in _container.Values)

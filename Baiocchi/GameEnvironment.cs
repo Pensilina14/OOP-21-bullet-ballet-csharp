@@ -38,7 +38,7 @@ namespace OOP21_task_cSharp.Baiocchi
         }
 
         public Dimension2D getDimension()
-        { 
+        {
             return _dimension;
         }
 
