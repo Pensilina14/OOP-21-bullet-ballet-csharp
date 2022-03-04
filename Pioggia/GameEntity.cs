@@ -61,6 +61,6 @@
             this._landed = false;
         }
 
-        public void UpdateState() => this._speedVector.NoSpeedVectorSum(-MS_TO_S, 0);
+        public virtual void UpdateState() => this._speedVector.NoSpeedVectorSum(-MS_TO_S, 0);
     }
 }
