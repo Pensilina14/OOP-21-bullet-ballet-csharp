@@ -1,4 +1,6 @@
-﻿namespace OOP21_task_cSharp.Pioggia
+﻿using OOP21_task_cSharp.Baiocchi;
+
+namespace OOP21_task_cSharp.Pioggia
 {
     public class GameEntity : IPhysicalObject
     {
@@ -24,27 +26,42 @@
             return this._dimension;
         }
 
-        public Baiocchi.IEnvironment GameEnvironment => this._gameEnvironment;
+        public IEnvironment GetGameEnvironment()
+        {
+            return this._gameEnvironment;
+        }
 
-        public double Mass { get; }
+        public double GetMass()
+        {
+            return this._mass;
+        }
 
-        public IMutablePosition2D Position => this._speedVector.GetPosition();
-
-        public ISpeedVector2D SpeedVector => this._speedVector;
-
-        public bool HasLanded => this._landed;
-
+        bool IPhysicalObject.HasLanded()
+        {
+            return this._landed;
+        }
+        
         public void Land() => this._landed = true;
 
         public void MoveDown(double y) => this._speedVector.VectorSum(0, y);
 
-        public bool MoveLeft(double x) => this.Move(this.Position.GetX() - x - this.GetDimension().GetWidth() >= 0, x, 0);
+        public bool MoveLeft(double x) => this.Move(this.GetPosition().GetX() - x - this.GetDimension().GetWidth() >= 0, x, 0);
 
-        public bool MoveRight(double x) => this.Move(this.Position.GetX() + x + this.GetDimension().GetWidth()
+        public bool MoveRight(double x) => this.Move(this.GetPosition().GetX() + x + this.GetDimension().GetWidth()
                 <= this._gameEnvironment.getDimension().GetWidth(), x, 0);
 
-        public bool MoveUp(double y) => this.Move(this.Position.GetY() - y - this.GetDimension().GetHeight()
-                >= this._gameEnvironment.getDimension().GetHeight(), 0, y);
+        public IMutablePosition2D GetPosition()
+        {
+            return this._speedVector.GetPosition();
+        }
+
+        public ISpeedVector2D GetSpeedVector()
+        {
+            return this._speedVector;
+        }
+
+        public bool MoveUp(double y) => this.Move(this.GetPosition().GetY() - y - this.GetDimension().GetHeight()
+                                                  >= this._gameEnvironment.getDimension().GetHeight(), 0, y);
 
         private bool Move(bool condition, double x, double y)
         {

@@ -2,8 +2,8 @@
 {
     public interface IPair
     {
-        double X { get; }
+        double GetX();
 
-        double Y { get; }
+        double GetY();
     }
 }

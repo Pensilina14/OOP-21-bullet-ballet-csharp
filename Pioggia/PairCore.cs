@@ -13,7 +13,13 @@ public class PairCore : IPair
         this._y = y;
     }
 
-    double IPair.X => this._x;
+    public double GetX()
+    {
+        return this._x;
+    }
 
-    double IPair.Y => this._y;
+    public double GetY()
+    {
+        return this._y;
+    }
 }
