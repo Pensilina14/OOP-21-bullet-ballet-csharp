@@ -29,16 +29,16 @@ namespace OOP21_task_cSharp.Baiocchi
         /// <param name="player">Player to be set as main player.</param>
         void SetPlayer(Player player);
         /// <summary>
-        /// 
+        /// Adds an enemy to the environment.
         /// </summary>
-        /// <param name="???"></param>
+        /// <param name="enemy"></param>
         /// <returns></returns>
-        bool AddEnemy(Enemy);
+        bool AddEnemy(Enemy enemy);
         /// <summary>
-        /// Returns a <see cref="List"/> of all the game entities.
+        /// Returns a <see cref="IList"/> of all the game entities.
         /// </summary>
         /// <returns>List of PhysicalObjects</returns>
-        IList<PhysicalObject>? GetObjsList();
+        IList<IPhysicalObject>? GetObjsList();
         /// <summary>
         /// Deletes the entity at given pos from the container.
         /// </summary>

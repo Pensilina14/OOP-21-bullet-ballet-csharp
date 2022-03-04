@@ -29,7 +29,7 @@ namespace OOP21_task_cSharp.Baiocchi
         public GameEnvironment(double gravity, double height, double width, IEntityManager container)
         {
             _gravity = 1.0;
-            _dimension = new Dimension2Dimpl(height, width);
+            _dimension = new Dimension2DCore(height, width);
             _entities = container;
         }
 
@@ -38,7 +38,7 @@ namespace OOP21_task_cSharp.Baiocchi
             return _gravity;
         }
 
-        public Dimension2D getDimension()
+        public IDimension2D getDimension()
         {
             return _dimension;
         }

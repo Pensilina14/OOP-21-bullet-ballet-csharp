@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP21_task_cSharp.Rengo
 {
-    class Enemy : ICharacters
+    public class Enemy : ICharacters
     {
         private double _health;
         private string _name;
