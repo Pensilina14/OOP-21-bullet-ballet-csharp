@@ -2,7 +2,7 @@
 {
     public interface IMutablePosition2D
     {
-        Pair GetCoordinates();
+        IPair GetCoordinates();
         double GetX();
         double GetY();
         void SetPosition(double x, double y);

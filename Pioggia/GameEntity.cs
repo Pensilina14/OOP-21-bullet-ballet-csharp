@@ -3,85 +3,69 @@
     public class GameEntity : IPhysicalObject
     {
         private const double MS_TO_S = 1;
-        private readonly SpeedVector2D speedVector;
-        private readonly Baiocchi.Environment gameEnvironment;
-        private readonly Dimension2D dimension;
-        private readonly double mass;
-        private bool landed;
+        private readonly ISpeedVector2D _speedVector;
+        private readonly Baiocchi.IEnvironment _gameEnvironment;
+        private readonly IDimension2D _dimension;
+        private readonly double _mass;
+        private bool _landed;
 
-        public GameEntity(SpeedVector2D speedVector, Baiocchi.Environment gameEnvironment, double mass
-            , Dimension2D dimension)
+        public GameEntity(ISpeedVector2D speedVector, Baiocchi.IEnvironment gameEnvironment, double mass
+            , IDimension2D dimension)
         {
-            this.speedVector = speedVector;
-            this.gameEnvironment = gameEnvironment;
-            this.dimension = dimension;
-            this.mass = mass;
-            this.landed = false;
+            this._speedVector = speedVector;
+            this._gameEnvironment = gameEnvironment;
+            this._dimension = dimension;
+            this._mass = mass;
+            this._landed = false;
         }
 
-
-        public Dimension2D GetDimension()
+        public IDimension2D GetDimension()
         {
-            return this.dimension;
+            return this._dimension;
         }
 
-        public Baiocchi.Environment GetGameEnvironment()
-        {
-            return this.gameEnvironment;
-        }
+        public Baiocchi.IEnvironment GameEnvironment => this._gameEnvironment;
 
-        public double GetMass()
-        {
-            return this.mass;
-        }
+        public double Mass { get; }
 
-        public IMutablePosition2D GetPosition()
-        {
-            return this.speedVector.GetPosition();
-        }
+        public IMutablePosition2D Position => this._speedVector.GetPosition();
 
-        public SpeedVector2D GetSpeedVector()
-        {
-            return this.speedVector;
-        }
+        public ISpeedVector2D SpeedVector => this._speedVector;
 
-        public bool HasLanded()
-        {
-            return this.landed;
-        }
+        public bool HasLanded => this._landed;
 
         public void Land()
         {
-            this.landed = true;
+            this._landed = true;
         }
 
         public void MoveDown(double y)
         {
-            this.speedVector.VectorSum(0, y);
+            this._speedVector.VectorSum(0, y);
         }
 
         public bool MoveLeft(double x)
         {
-            return this.Move(this.GetPosition.getX() - x - this.GetDimension().GetWidth() >= 0);
+            return this.Move(this.Position.GetX() - x - this.GetDimension().GetWidth() >= 0, x, 0);
         }
 
         public bool MoveRight(double x)
         {
-            return this.Move(this.GetPosition().GetX() + x + this.GetDimension().GetWidth()
-                <= this.gameEnvironment.GetDimension().GetWidth(), x, 0);
+            return this.Move(this.Position.GetX() + x + this.GetDimension().GetWidth()
+                <= this._gameEnvironment.getDimension().GetWidth(), x, 0);
         }
 
         public bool MoveUp(double y)
         {
-            return this.Move(this.GetPosition().getY() - y - this.GetDimension().GetHeight()
-                >= this.gameEnvironment.getDimension().GetHeight(), 0, y);
+            return this.Move(this.Position.GetY() - y - this.GetDimension().GetHeight()
+                >= this._gameEnvironment.getDimension().GetHeight(), 0, y);
         }
 
         private bool Move(bool condition, double x, double y)
         {
             if (condition)
             {
-                this.speedVector.VectorSum(x, y);
+                this._speedVector.VectorSum(x, y);
                 return true;
             }
             return false;
@@ -89,12 +73,12 @@
 
         public void ResetLanding()
         {
-            this.landed = false;
+            this._landed = false;
         }
 
         public void UpdateState()
         {
-            this.speedVector.NoSpeedVectorSum(-MS_TO_S, 0);
+            this._speedVector.NoSpeedVectorSum(-MS_TO_S, 0);
         }
     }
 }
