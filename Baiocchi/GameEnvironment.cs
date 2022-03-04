@@ -6,7 +6,7 @@ namespace OOP21_task_cSharp.Baiocchi
 {
     public class GameEnvironment : IEnvironment
     {
-        public readonly static double DEFAULT_DIM = 20.0;
+        public const double DEFAULT_DIM = 20.0;
 
         private readonly double _gravity;
         private readonly IDimension2D _dimension;

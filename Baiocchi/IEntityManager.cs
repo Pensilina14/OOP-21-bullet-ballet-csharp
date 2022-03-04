@@ -22,7 +22,7 @@ namespace OOP21_task_cSharp.Baiocchi
         /// 
         /// </summary>
         /// <returns></returns>
-        List<Enemy>? GetEnemies();
+        IList<Enemy>? GetEnemies();
         /// <summary>
         /// Sets given player as player.
         /// </summary>

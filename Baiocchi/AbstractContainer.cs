@@ -11,7 +11,7 @@ namespace OOP21_task_cSharp.Baiocchi
             {GameEntities.PLAYER, GameEntities.ENEMY, GameEntities.WEAPON, GameEntities.BULLET};
         private readonly Dictionary<GameEntities, IList<TX>?> _container;
 
-        public AbstractContainer()
+        protected AbstractContainer()
         {
             _container = new Dictionary<GameEntities, IList<TX>?>();
             foreach (GameEntities entity in _gameEntities)

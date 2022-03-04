@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OOP21_task_cSharp.Pioggia;
 
 namespace OOP21_task_cSharp.Rengo
 {
-    public class Player : ICharacters
+    public class Player : GameEntity, ICharacters
     {
         private double _health;
         private string _name;

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using OOP21_task_cSharp.Pioggia;
 using OOP21_task_cSharp.Rengo;
 
@@ -16,32 +18,78 @@ namespace OOP21_task_cSharp.Baiocchi
     {
         public Player? GetPlayer()
         {
-            
+            IList<GameEntity>? player = 
+                   (from entry in this.GetContainer()
+                    where entry.Key == GameEntities.PLAYER
+                    select entry.Value).ElementAt(0);
+            if (player != null && player[0] is Player)
+            {
+                return player[0] as Player;
+            }
+            return null;
         }
 
-        public List<Enemy>? GetEnemies()
+        public IList<Enemy>? GetEnemies()
         {
-            
+            IList<Enemy> enemies = new List<Enemy>();
+            foreach (KeyValuePair<GameEntities, IList<GameEntity>>? entry in this.GetContainer())
+            {
+                if (entry.HasValue && entry.GetValueOrDefault().Key == GameEntities.ENEMY)
+                {
+                    foreach (GameEntity entity in entry.GetValueOrDefault().Value)
+                    {
+                        if (entity is Enemy)
+                        {
+                            enemies.Add(entity as Enemy);
+                        }
+                    }
+                }
+            }
+            return enemies;
         }
 
         public void SetPlayer(Player player)
         {
-            
+            this.GetContainer().First().Value[0] = player;
         }
 
-        public void AddEnemy(Enemy enemy)
+        public bool AddEnemy(Enemy enemy)
         {
-            
+            foreach (KeyValuePair<GameEntities, IList<GameEntity>?> entry in this.GetContainer())
+            {
+                if (entry.Key == GameEntities.ENEMY)
+                {
+                    entry.Value.Add(enemy);
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public IList<GameEntity>? GetObjsList()
+        public IList<IPhysicalObject>? GetObjsList()
         {
-            
+            IList<IPhysicalObject>? entities = new List<IPhysicalObject>();
+            foreach (KeyValuePair<GameEntities, IList<GameEntity>?> entry in this.GetContainer())
+            {
+                entities.ToList().AddRange(entry.Value);
+            }
+            return entities;
         }
 
         public bool DeleteEntity(IMutablePosition2D pos)
         {
-            
+            foreach (KeyValuePair<GameEntities, IList<GameEntity>?> entry in this.GetContainer())
+            {
+                foreach (GameEntity entity in entry.Value)
+                {
+                    if (entity.GetPosition().Equals(pos))
+                    {
+                        entry.Value.Remove(entity);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
