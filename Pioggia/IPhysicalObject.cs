@@ -1,6 +1,6 @@
 ﻿namespace OOP21_task_cSharp.Pioggia
 {
-    internal interface IPhysicalObject
+    public interface IPhysicalObject
     {
         IMutablePosition2D GetPosition();
         SpeedVector2D GetSpeedVector();

@@ -1,6 +1,6 @@
 ﻿namespace OOP21_task_cSharp.Pioggia
 {
-    internal class GameEntity : IPhysicalObject
+    public class GameEntity : IPhysicalObject
     {
         private const double MS_TO_S = 1;
         private readonly SpeedVector2D speedVector;
@@ -12,7 +12,6 @@
         public GameEntity(SpeedVector2D speedVector, Baiocchi.Environment gameEnvironment, double mass
             , Dimension2D dimension)
         {
-
             this.speedVector = speedVector;
             this.gameEnvironment = gameEnvironment;
             this.dimension = dimension;

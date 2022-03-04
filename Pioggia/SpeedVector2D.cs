@@ -1,6 +1,6 @@
 ﻿namespace OOP21_task_cSharp.Pioggia
 {
-    internal interface SpeedVector2D
+    public interface SpeedVector2D
     {
         double GetSpeed();
         void VectorSum(double x, double y);
