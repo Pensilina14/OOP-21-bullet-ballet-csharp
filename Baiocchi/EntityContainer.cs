@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OOP21_task_cSharp.Brunelli;
 using OOP21_task_cSharp.Pioggia;
 using OOP21_task_cSharp.Rengo;
 
@@ -32,11 +33,11 @@ namespace OOP21_task_cSharp.Baiocchi
         public IList<Enemy>? GetEnemies()
         {
             IList<Enemy> enemies = new List<Enemy>();
-            foreach (KeyValuePair<GameEntities, IList<GameEntity>>? entry in this.GetContainer())
+            foreach (KeyValuePair<GameEntities, IList<GameEntity>?> entry in this.GetContainer())
             {
-                if (entry.HasValue && entry.GetValueOrDefault().Key == GameEntities.ENEMY)
+                if (entry.Key == GameEntities.ENEMY)
                 {
-                    foreach (GameEntity entity in entry.GetValueOrDefault().Value)
+                    foreach (GameEntity entity in entry.Value)
                     {
                         if (entity is Enemy)
                         {
@@ -46,6 +47,25 @@ namespace OOP21_task_cSharp.Baiocchi
                 }
             }
             return enemies;
+        }
+
+        public IList<Weapon>? GetWeapons()
+        {
+            IList<Weapon> weapons = new List<Weapon>();
+            foreach (KeyValuePair<GameEntities, IList<GameEntity>?> entry in this.GetContainer())
+            {
+                if (entry.Key == GameEntities.WEAPON)
+                {
+                    foreach (GameEntity entity in entry.Value)
+                    {
+                        if (entity is WeaponImpl)
+                        {
+                            weapons.Add(entity as WeaponImpl);
+                        }
+                    }
+                }
+            }
+            return weapons;
         }
 
         public void SetPlayer(Player player)
@@ -60,6 +80,19 @@ namespace OOP21_task_cSharp.Baiocchi
                 if (entry.Key == GameEntities.ENEMY)
                 {
                     entry.Value.Add(enemy);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool AddWeapon(WeaponImpl weapon)
+        {
+            foreach (KeyValuePair<GameEntities, IList<GameEntity>?> entry in this.GetContainer())
+            {
+                if (entry.Key == GameEntities.WEAPON)
+                {
+                    entry.Value.Add(weapon);
                     return true;
                 }
             }
