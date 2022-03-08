@@ -12,6 +12,7 @@ public interface IBullet
     string Name();
     double Damage();
     bool IsShot();
+    void fire();
     BulletType BulletType();
     
 }

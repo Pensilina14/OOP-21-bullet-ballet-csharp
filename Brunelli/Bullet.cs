@@ -1,24 +1,46 @@
-namespace DefaultNamespace;
+using OOP21_task_cSharp.Rengo.EntityLevel;
+using OOP21_task_cSharp.Pioggia.*;
+using OOP21_task_cSharp.Baiocchi.IEnvironment;
 
-public class Bullet : IBullet
+namespace OOP21_task_cSharp.Brunelli;
+
+public class Bullet : IBullet, OOP21_task_cSharp.Pioggia.GameEntity
 {
-    public string Name()
+	private readonly static double _DAMAGE = 10.0;
+	private readonly string _name;
+	private bool _fired;
+	private EntityLevel.BulletType _bulletType;
+
+	public Bullet(ISpeedVector2D vector, IEnvironment gameEnvironment, double mass
+		, IDimension2D dimension, EntityLevel.BulletType bulletType)
+	{
+		base(vector, gameEnvironment, mass, dimension);
+		this._fired = false;
+		this._bulletType = bulletType;
+	}
+
+	public string Name()
     {
-        ///TODO
+        return this._name;
     }
 
     public double Damage()
     {
-        ///TODO
+        return _DAMAGE;
     }
        
     public bool IsShot()
     {
-        ///TODO
+        return this._fired;
     }
+
+	public void Fire()
+	{
+		this._fired = true;
+	}
 
     public BulletType()
     {
-        ///TODO
+        return this._bulletType;
     }
 }
