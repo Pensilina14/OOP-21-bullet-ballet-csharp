@@ -14,9 +14,9 @@ namespace OOP21_task_cSharp.Rengo
 
         void SetHealth(double setHealth);
 
-        // Weapon getWeapon();
+        OOP21_task_cSharp.Brunelli.IWeapon GetWeapon();
 
-        // void SetWeapon(Weapon weapon);
+        void SetWeapon(OOP21_task_cSharp.Brunelli.IWeapon weapon);
 
         string GetName();
 
