@@ -60,7 +60,7 @@ namespace OOP21_task_cSharp.Rengo
             const int randomPlayer = s_rand.Next(max);
             foreach (Characters e in Enum.GetValues(typeof(Characters)))
             {
-                if (randomPlayer == Enum.GetValues(e.GetType()).GetValue()) //TODO: da riguardare.
+                if (randomPlayer == Enum.GetValues(e.GetType()).GetValue()) 
                 {
                     this._enemyType = e;
                 }
