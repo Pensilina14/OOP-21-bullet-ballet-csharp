@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OOP21_task_cSharp.Pioggia;
 
 namespace OOP21_task_cSharp.Rengo
 {
-    public class Player : ICharacters
+    public class Player : GameEntity, ICharacters
     {
         private double _health;
         private string _name;
 
-        //TODO: private Weapon _weapon;
+        private OOP21_task_cSharp.Brunelli.IWeapon _weapon;
 
         private bool _landed;
         private bool _blockedX;
@@ -27,7 +28,7 @@ namespace OOP21_task_cSharp.Rengo
         {
             this._name = name;
             this._health = 100.0;
-            //TODO: this._weapon = empty;
+            this._weapon = empty;
         }
 
         public Player(string name, double health, OOP21_task_cSharp.Pioggia.Dimension2D dimension,
@@ -35,7 +36,7 @@ namespace OOP21_task_cSharp.Rengo
         {
             this._name = name;
             this._health = health;
-            //TODO: this._weapon = empty;
+            this._weapon = empty;
         }
 
         public Player(EntityList playerType, OOP21_task_cSharp.Pioggia.Dimension2D dimension,
@@ -62,7 +63,7 @@ namespace OOP21_task_cSharp.Rengo
             const int randomPlayer = s_rand.Next(max);
             foreach( Characters p in Enum.GetValues(typeof(Characters)))
             {
-                if(randomPlayer == Enum.GetValues(p.GetType()).GetValue()) //TODO: da riguardare.
+                if(randomPlayer == Enum.GetValues(p.GetType()).GetValue()) 
                 {
                     this._playerType = p;
                 }
@@ -76,19 +77,19 @@ namespace OOP21_task_cSharp.Rengo
                 case Characters.PLAYER1:
                     minHealth = 80.0;
                     this._name = "Player1";
-                    //TODO: Weapon
+                    this._weapon = null; // Qui sarebbe Optional.empty();
                     this._health = s_rand.Next(minHealth, s_max);
                     break;
                 case Characters.PLAYER2:
                     minHealth = 65.0;
                     this._name = "Player2";
-                    //TODO: Weapon
+                    this._weapon = null; // Qui sarebbe Optional.empty();
                     this._health = s_rand.Next(minHealth, s_max);
                     break;
                 case Characters.PLAYER3:
                     minHealth = 50.0;
                     this._name = "Player3";
-                    //TODO: Weapon
+                    this._weapon = null; // Qui sarebbe Optional.empty();
                     this._health = s_rand.Next(minHealth, s_max);
                     break;
                 default:
@@ -111,9 +112,15 @@ namespace OOP21_task_cSharp.Rengo
             this._health = setHealth;
         }
 
-        //TODO: Weapon GetWeapon()
+        public OOP21_task_cSharp.Brunelli.IWeapon GetWeapon()
+        {
+            return this._weapon;
+        }
 
-        //TODO: void SetWeapon()
+        public void SetWeapon(OOP21_task_cSharp.Brunelli.IWeapon weapon)
+        {
+            this._weapon = weapon;
+        }
 
         public string GetName()
         {
@@ -135,16 +142,19 @@ namespace OOP21_task_cSharp.Rengo
             return this._playerType;
         }
 
-        //TODO: Has Weapon
+        public bool HasWeapon()
+        {
+            return this._weapon != null;
+        }
 
         public void UpdateState()
         {
             if(!this._blockedX)
             {
-                //TODO:
+                this.MoveRight(0);
             } else
             {
-                //TODO:
+                this.MoveLeft(1);
             }
         }
 

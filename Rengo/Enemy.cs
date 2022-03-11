@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OOP21_task_cSharp.Pioggia;
 
 namespace OOP21_task_cSharp.Rengo
 {
-    public class Enemy : ICharacters
+    public class Enemy : GameEntity, ICharacters
     {
         private double _health;
         private string _name;
 
-        // Optional<Weapon> _weapon;
+        private OOP21_task_cSharp.Brunelli.IWeapon _weapon;
 
         private Characters _enemyType;
 
@@ -106,15 +107,15 @@ namespace OOP21_task_cSharp.Rengo
             this._health = setHealth;
         }
 
-        /*public Optional<Weapon> GetWeapon() //TODO: uncomment when Weapon will be added.
+        public OOP21_task_cSharp.Brunelli.IWeapon GetWeapon()
         {
             return this._weapon;
-        }*/
+        }
 
-        /*public void SetWeapon(Weapon weapon)
+        public void SetWeapon(OOP21_task_cSharp.Brunelli.IWeapon weapon)
         {
-            this._weapon = Optional.of(weapon);
-        }*/
+            this._weapon = weapon;
+        }
 
         public string GetName()
         {
@@ -136,13 +137,12 @@ namespace OOP21_task_cSharp.Rengo
             return this._enemyType;
         }
 
-        public void updateState()
+        public void UpdateState()
         {
             //super.updateState();
             if (!this.IsAlive())
             {
-                //this.GetGameEnvironment().get()
-                //.deleteObjByPosition(new ImmutablePosition2Dimpl(this.getPosition().get())); //TODO: uncomment
+                this.GetGameEnvironment().deleteObjByPosition(new IMutablePosition2D(this.GetPosition()));
             }
         }
 
@@ -166,14 +166,13 @@ namespace OOP21_task_cSharp.Rengo
             return s_rand.NextDouble() * s_max_range;
         }
 
-        // forse passare l'index dell'enemy come parametro non serve.
         public bool IsPlayerInRange(int enemyIndex)
         {
-            double xPlayer = this.getGameEnvironment().get().getEntityManager().getPlayer().get().getPosition().get().getX();
-            double yPlayer = this.getGameEnvironment().get().getEntityManager().getPlayer().get().getPosition().get().getX();
+            double xPlayer = this.GetGameEnvironment().getEntityManager().GetPlayer().GetPosition().GetX();
+            double yPlayer = this.GetGameEnvironment().getEntityManager().GetPlayer().GetPosition().GetX();
 
-            double xEnemy = this.getGameEnvironment().get().getEntityManager().getEnemies().get().get(enemyIndex).getPosition().get().getX();
-            double yEnemy = this.getGameEnvironment().get().getEntityManager().getEnemies().get().get(enemyIndex).getPosition().get().getY();
+            double xEnemy = this.GetGameEnvironment().getEntityManager().GetEnemies().Get(enemyIndex).GetPosition().GetX();
+            double yEnemy = this.GetGameEnvironment().getEntityManager().GetEnemies().Get(enemyIndex).GetPosition().GetY();
 
             double distance = Math.sqrt((xPlayer - xEnemy) + (yPlayer - yEnemy));
 

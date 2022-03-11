@@ -16,5 +16,19 @@ namespace OOP21_task_cSharp.Rengo
         ENEMY2,
         ENEMY3
     }
+    
+    public enum BulletType
+    {
+        CLASSIC,
+        TOXIC,
+        SOPORIFIC
+    }
+
+    public enum WeaponType
+    {
+        GUN = 10,
+        AUTO = 4,
+        SHOTGUN = 15,
+    }
 
 }
