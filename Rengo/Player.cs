@@ -19,8 +19,8 @@ namespace OOP21_task_cSharp.Rengo
         private Characters _playerType;
         //TODO: private const ScoreSystem _currentScore;
 
-        private static const Random s_rand = new Random();
-        private static const double s_max = 100.0;
+        private const Random s_rand = new Random();
+        private const double s_max = 100.0;
 
         public Player(string name, OOP21_task_cSharp.Pioggia.Dimension2D dimension,
             OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) 
