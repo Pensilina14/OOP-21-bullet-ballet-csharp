@@ -9,6 +9,6 @@ public interface IBullet
     void SetDamage(double value);
     bool IsShot();
     void fire();
-    EntityLevel.BulletType BulletType();
+    EntityLevel.BulletType GetBulletType();
     
 }

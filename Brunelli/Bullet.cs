@@ -30,5 +30,5 @@ public class Bullet : IBullet, OOP21_task_cSharp.Pioggia.GameEntity
 
     public void Fire() => this._fired = true;
 
-    public BulletType() => this._bulletType;
+    public GetBulletType() => this._bulletType;
 }
