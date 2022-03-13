@@ -1,18 +1,14 @@
+using OOP21_bullet_ballet_cSharp.Rengo.EntityLevel;
+
 namespace DefaultNamespace;
+
 
 public interface IBullet
 {
-    enum BulletType
-    {
-        CLASSIC("Classic"),
-        TOXIC("Toxic"),
-        SOPORIFIC("Soporific")
-    };
-
-    string Name();
-    double Damage();
+    double GetDamage();
+    void SetDamage(double value);
     bool IsShot();
     void fire();
-    BulletType BulletType();
+    EntityLevel.BulletType BulletType();
     
 }
