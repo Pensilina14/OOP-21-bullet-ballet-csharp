@@ -13,8 +13,6 @@ namespace OOP21_task_cSharp.Brunelli
 
         bool HasAmmo();//done
 
-        string GetName();//done
-
         void Recharge();//done
 
         int GetLimitBullets();//done

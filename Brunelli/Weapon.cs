@@ -27,12 +27,11 @@ namespace OOP21_task_cSharp.Brunelli
         private readonly EntityLevel.Weapons _weaponType;
 		private readonly double _damage;
 
-        public Weapon(EntityLevel.WeaponType weaponType, IDimension2D dimension, Baiocchi.IEnvironment gameEnv,
+        public Weapon(EntityLevel.WeaponType weaponType, IDimension2D dimension, IEnvironment gameEnv,
         double mass, ISpeedVector2D vector)
         {
             base(vector, gameEnvironment, mass, dimension);
             this._weaponType = weaponType;
-            ///TODO this._name = ;
             this.Set_limitBullets(weaponType.getLimBullets());
             this.Set_limitChargers(weaponType.getLimChargers());
             this._currentAmmo = Get_limitBullets();
@@ -114,7 +113,7 @@ namespace OOP21_task_cSharp.Brunelli
             List<IBullet> charger = new List<IBullet>();
             for (int i = 0; i < this._limitBullets; i++)
             {
-                charger.Add(new Bullet());
+                charger.Add(new Bullet(vector, this._gameEnvironment, EntityLevel.BulletType.CLASSIC));
             }
             charger.ForEach( b -> b.SetDamage(this._damage));
             SwitchCharger;
@@ -157,8 +156,6 @@ namespace OOP21_task_cSharp.Brunelli
 
             return sum;
         }
-
-        public string GetName() => this._name;
 
         public bool GetMode() => this._mode;
 
