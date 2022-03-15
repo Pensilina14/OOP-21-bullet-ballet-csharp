@@ -29,13 +29,13 @@ namespace OOP21_task_cSharp.Rengo.RengoTest
         [Test]
         public void TestPlayer()
         {
-            Assert.Equals(playerName, player.GetName());
-            Assert.Equals(health, player.GetHealth());
-            Assert.Equals(mass, player.GetMass());
+            Assert.AreEqual(playerName, player.GetName());
+            Assert.AreEqual(health, player.GetHealth());
+            Assert.AreEqual(mass, player.GetMass());
             Assert.True(player.IsAlive());
 
             player.SetHealth(50.0);
-            Assert.Equals(50.0, player.GetHealth());
+            Assert.AreEqual(50.0, player.GetHealth());
 
             player.SetHealth(-5.55);
             Assert.False(player.IsAlive());
@@ -44,13 +44,13 @@ namespace OOP21_task_cSharp.Rengo.RengoTest
         [Test]
         public void TestEnemy()
         {
-            Assert.Equals(enemyName, enemy.GetName());
-            Assert.Equals(health, enemy.GetHealth());
-            Assert.Equals(mass, enemy.GetMass());
+            Assert.AreEqual(enemyName, enemy.GetName());
+            Assert.AreEqual(health, enemy.GetHealth());
+            Assert.AreEqual(mass, enemy.GetMass());
             Assert.True(enemy.IsAlive());
 
             enemy.SetHealth(50.0);
-            Assert.Equals(50.0, enemy.GetHealth());
+            Assert.AreEqual(50.0, enemy.GetHealth());
 
             enemy.SetHealth(-3.33);
             Assert.False(enemy.IsAlive());
