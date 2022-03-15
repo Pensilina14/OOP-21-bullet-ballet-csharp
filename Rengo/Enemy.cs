@@ -16,16 +16,16 @@ namespace OOP21_task_cSharp.Rengo
 
         private Characters _enemyType;
 
-        private static const Random s_rand = Random();
-        private static const double s_max = 100.0;
+        private static readonly Random s_rand = new Random();
+        private const double s_max = 100.0;
         private bool _landed;
 
-        private static const double s_max_range = 7.0;
+        private const double s_max_range = 7.0;
 
-        private const double enemyRange = getRandomRange();
+        private readonly double _enemyRange = GetRandomRange();
 
-        public Enemy(string name, double health, OOP21_task_cSharp.Pioggia.Dimension2D dimension, 
-            OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass)
+        public Enemy(string name, double health, OOP21_task_cSharp.Pioggia.IDimension2D dimension, 
+            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass)
         {
 
             //super(vector, environment, mass, dimension);
@@ -35,32 +35,32 @@ namespace OOP21_task_cSharp.Rengo
 
         }
 
-        public Enemy(EntityList enemyType, OOP21_task_cSharp.Pioggia.Dimension2D dimension,
-            OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, 
+        public Enemy(Characters enemyType, OOP21_task_cSharp.Pioggia.IDimension2D dimension,
+            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, 
             double mass)
         {
             //super(vector, environment, mass, dimension);
             this._enemyType = enemyType;
-            setEnemyType();
+            SetEnemyType();
         }
 
-        public Enemy(OOP21_task_cSharp.Pioggia.Dimension2D dimension,
-            OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass)
+        public Enemy(OOP21_task_cSharp.Pioggia.IDimension2D dimension,
+            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass)
         {
             //super(vector, environment, mass, dimension);
 
-            setRandomEnemy();
-            setEnemyType();
+            SetRandomEnemy();
+            SetEnemyType();
         }
 
         private void SetRandomEnemy()
         {
-            const int max = Enum.GetNames(typeof(Characters)).Length;
+            int max = Enum.GetNames(typeof(Characters)).Length;
 
-            const int randomPlayer = s_rand.Next(max);
+            int randomPlayer = s_rand.Next(max);
             foreach (Characters e in Enum.GetValues(typeof(Characters)))
             {
-                if (randomPlayer == Enum.GetValues(e.GetType()).GetValue()) 
+                if (randomPlayer == (int)e) 
                 {
                     this._enemyType = e;
                 }
@@ -75,17 +75,17 @@ namespace OOP21_task_cSharp.Rengo
                 case Characters.ENEMY1:
                     minHealth = 80.0;
                     this._name = "Enemy1";
-                    this._health = s_rand.Next(minHealth, s_max);
+                    this._health = s_rand.Next((int)minHealth, (int)s_max);
                     break;
                 case Characters.ENEMY2:
                     minHealth = 65.0;
                     this._name = "Enemy2";
-                    this._health = s_rand.Next(minHealth, s_max);
+                    this._health = s_rand.Next((int)minHealth, (int)s_max);
                     break;
                 case Characters.ENEMY3:
                     minHealth = 50.0;
                     this._name = "Enemy3";
-                    this._health = s_rand.Next(minHealth, s_max);
+                    this._health = s_rand.Next((int)minHealth, (int)s_max);
                     break;
                 default:
                     break;
@@ -137,15 +137,6 @@ namespace OOP21_task_cSharp.Rengo
             return this._enemyType;
         }
 
-        public void UpdateState()
-        {
-            //super.updateState();
-            if (!this.IsAlive())
-            {
-                this.GetGameEnvironment().deleteObjByPosition(new IMutablePosition2D(this.GetPosition()));
-            }
-        }
-
         public bool HasLanded()
         {
             return this._landed;
@@ -161,7 +152,7 @@ namespace OOP21_task_cSharp.Rengo
             this._landed = false;
         }
 
-        private double GetRandomRange()
+        private static double GetRandomRange()
         {
             return s_rand.NextDouble() * s_max_range;
         }
@@ -171,10 +162,10 @@ namespace OOP21_task_cSharp.Rengo
             double xPlayer = this.GetGameEnvironment().getEntityManager().GetPlayer().GetPosition().GetX();
             double yPlayer = this.GetGameEnvironment().getEntityManager().GetPlayer().GetPosition().GetX();
 
-            double xEnemy = this.GetGameEnvironment().getEntityManager().GetEnemies().Get(enemyIndex).GetPosition().GetX();
-            double yEnemy = this.GetGameEnvironment().getEntityManager().GetEnemies().Get(enemyIndex).GetPosition().GetY();
+            double xEnemy = this.GetGameEnvironment().getEntityManager().GetEnemies()[enemyIndex].GetPosition().GetX();
+            double yEnemy = this.GetGameEnvironment().getEntityManager().GetEnemies()[enemyIndex].GetPosition().GetY();
 
-            double distance = Math.sqrt((xPlayer - xEnemy) + (yPlayer - yEnemy));
+            double distance = Math.Sqrt((xPlayer - xEnemy) + (yPlayer - yEnemy));
 
             return distance <= this._enemyRange;
         }
