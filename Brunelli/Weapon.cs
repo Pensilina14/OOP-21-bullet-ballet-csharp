@@ -1,16 +1,11 @@
-using System;
-using OOP21_task_cSharp.Pioggia.GameEntity;
-using OOP21_task_cSharp.Rengo.EntityLevel;
-using OOP21_task_cSharp.Pioggia.IDimension2D;
-using OOP21_task_cSharp.Pioggia.ISpeedVector2D;
-using OOP21_task_cSharp.Baiocchi.IEnvironment;
-using Brunelli.Bullet;
-
+using OOP21_task_cSharp.Rengo;
+using OOP21_task_cSharp.Baiocchi;
+using OOP21_task_cSharp.Pioggia;
 
 
 namespace OOP21_task_cSharp.Brunelli
 {
-    public class Weapon : IWeapon, GameEntity
+    public class Weapon : GameEntity, IWeapon
     {
         private readonly static int DISTANCE_X = 15;
         private readonly static int DISTANCE_Y = 6;
@@ -19,59 +14,55 @@ namespace OOP21_task_cSharp.Brunelli
 		private readonly static double DMG_SHOTGUN = 10;
         private readonly int _limitBullets;
         private readonly int _limitChargers;
-        private readonly string _name;
-        private readonly bool _mode;
+        private bool _mode;
         private int _currentAmmo;
         private int _indexCharger;
         private List<List<Bullet>> _bandolier;
-        private readonly EntityLevel.Weapons _weaponType;
-		private readonly double _damage;
+        private readonly WeaponType _weaponType;
+		private double _damage;
 
-        public Weapon(EntityLevel.WeaponType weaponType, IDimension2D dimension, IEnvironment gameEnv,
-        double mass, ISpeedVector2D vector)
+        public Weapon(WeaponType weaponType, IDimension2D dimension, IEnvironment gameEnv,
+            double mass, ISpeedVector2D vector, IEnvironment gameEnvironment) : base(vector, gameEnvironment, mass, dimension)
         {
-            base(vector, gameEnvironment, mass, dimension);
             this._weaponType = weaponType;
-            this.Set_limitBullets(weaponType.getLimBullets());
-            this.Set_limitChargers(weaponType.getLimChargers());
-            this._currentAmmo = Get_limitBullets();
+            this._limitBullets = (int) weaponType;
+            this._limitChargers = (int) weaponType;
+            this._currentAmmo = this.GetLimitBullets();
             this._mode = false;
-            this.Set_indexCharger(0);   
+            this._indexCharger = 0;
+            InitializeWeapon();
         }
 
-        private void initializeWeapon()
+        private void InitializeWeapon()
         {
             switch (this._weaponType)
             {
-                case EnityList.WeaponType.GUN:
-                    this.Set_limitBullets((int) this._weaponType);
-					this._damage = DMG_GUN;
+                case WeaponType.GUN:
+                    this._damage = DMG_GUN;
                     break;
-                case EnityList.WeaponType.AUTO:
-                    this.Set_limitBullets((int) this._weaponType);
+                case WeaponType.AUTO:
 					this._damage = DMG_AUTO;
                     break;
-                case EnityList.WeaponType.SHOTGUN:
-                    this.Set_limitBullets((int) this._weaponType);
+                case WeaponType.SHOTGUN:
 					this._damage = DMG_SHOTGUN;
                     break;
                 default: Console.WriteLine("Error");
                     return;
             }
 			
-			var charger = new List<IBullet>();
+			var charger = new List<Bullet>();
 			
-			for ( int i = 0; i < Get_limitBullets(); i++)
+            var speedVector = new SpeedVector2DCore();
+			for ( int i = 0; i < GetLimitBullets(); i++)
 			{
-				charger.Add(new Bullet(vector, this._gameEnvironment, EntityLevel.BulletType.CLASSIC));
+				charger.Add(new Bullet(speedVector, this.GetGameEnvironment(), BulletType.CLASSIC));
 			}
-			charger.ForEach( b -> b.Damage(this._damage));
-			
-			this._bandolier = new List<List<IBullet>>();
+			charger.ForEach(delegate(Bullet b) { b.SetDamage(this._damage); });
+            this._bandolier = new List<List<Bullet>>();
 			this._bandolier.Add(charger);
-			for ( int y = 1; y < this.Get_limitChargers(); y++)
+			for ( int y = 1; y < this.GetLimitChargers(); y++)
 			{
-				this._bandolier.Add(new List<IBullet>());
+				this._bandolier.Add(new List<Bullet>());
 			}
         }
 
@@ -88,9 +79,9 @@ namespace OOP21_task_cSharp.Brunelli
         }
 
         public bool HasAmmo(){
-            if (this._bandolier.get(_indexCharger).Count == 0)
+            if (this._bandolier[_indexCharger].Count == 0)
             {
-                this.SwitchCharger;
+                this.SwitchCharger();
             }
             return this._bandolier[this._indexCharger].Count > 0;
         }
@@ -99,25 +90,29 @@ namespace OOP21_task_cSharp.Brunelli
         {
             if (this._mode)
             {
-                if (!HasAmmo)
+                if (!HasAmmo())
                 {
-                    SwitchCharger;
+                    SwitchCharger();
                 }
                 this._currentAmmo--;
-                this._bandolier[this._indexCharger].Remove(this._currentAmmo);
+                this._bandolier[this._indexCharger].RemoveAt(this._currentAmmo - 1);
             }
         }
 
-        public async void Recharge()
+        public void Recharge()
         {
-            List<IBullet> charger = new List<IBullet>();
+            var charger = new List<Bullet>();
             for (int i = 0; i < this._limitBullets; i++)
             {
-                charger.Add(new Bullet(vector, this._gameEnvironment, EntityLevel.BulletType.CLASSIC));
+                charger.Add(new Bullet(this.GetSpeedVector(), this.GetGameEnvironment(), BulletType.CLASSIC));
             }
-            charger.ForEach( b -> b.SetDamage(this._damage));
-            SwitchCharger;
-            this._bandolier.Add(chaarger);
+
+            charger.ForEach(delegate(Bullet b)
+            {
+                b.SetDamage(this._damage);
+            });
+            this.SwitchCharger();
+            this._bandolier.Add(charger);
             if (this._indexCharger == 0)
             {
                 this._indexCharger = this._limitChargers;
@@ -126,25 +121,25 @@ namespace OOP21_task_cSharp.Brunelli
             this._currentAmmo = this._bandolier[this._indexCharger].Count;
         }
 
-        public EntityLevel.BulletType? GetTypeOfBulletInUse()
+        public BulletType? GetTypeOfBulletInUse()
         {
-            if(!HasAmmo)
+            if(!HasAmmo())
             {
-                SwitchCharger;
-                if (!HasAmmo)
+                SwitchCharger();
+                if (!HasAmmo())
                 {
                     Console.WriteLine("Error - finished Bullets");
                     return null;
                 }
             }
 
-            int indexAmmo = this._currentAmmo - 1;
-            List <Bullet> charger = this._bandolier[this._indexCharger];
-            Bullet? actualBullet = charger[indexAmmo].GetBulletType;
+            int indexAmmo = _currentAmmo - 1;
+            List <Bullet> charger = _bandolier[_indexCharger];
+            BulletType? actualBullet = charger[indexAmmo].GetBulletType();
             return actualBullet;
         }
 
-        public int TotalAmmo() => this.Get_limitChargers() * this.Get_limitBullets();
+        public int TotalAmmo() => this.GetLimitChargers() * GetLimitBullets();
 
         public int GetAmmoLeft()
         {
@@ -159,27 +154,17 @@ namespace OOP21_task_cSharp.Brunelli
 
         public bool GetMode() => this._mode;
 
-        public void SetMode() => this._mode = value;
-
-        public int Get_indexCharger() => this.Get_indexCharger();
-
-        public void SetPosition(IMutablePosition2D newPos) => this.getPosition..get().setPosition(newPos.getX + DISTANCE_X, newPos.getY + DISTANCE_Y);
-
-        public override bool Equals(object obj)
+        public void SetMode(bool value) => this._mode = value;
+        
+        public void SetPosition(IMutablePosition2D newPos)
         {
-            return obj is Weapon impl &&
-                   GetName() == impl.GetName();
+            GetPosition().SetPosition(newPos.GetX() + DISTANCE_X, newPos.GetY() + DISTANCE_Y);
         }
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(GetName());
-        }
+        public WeaponType GetTypeOfWeapon() => this._weaponType;
+        
+        public int GetLimitBullets() => this._limitBullets;
 
-        public EntityLevel.Weapons GetTypeOfWeapon() => this.GetTypeOfWeapon();
-
-        public int GetLimitBullets() => this.Get_limitBullets();
-
-        public int GetLimitChargers() => this.Get_limitChargers();
+        public int GetLimitChargers() => this._limitChargers;
     }
 }

@@ -1,6 +1,6 @@
-using OOP21_bullet_ballet_cSharp.Rengo.EntityLevel;
+using OOP21_task_cSharp.Rengo;
 
-namespace DefaultNamespaceù
+namespace OOP21_task_cSharp.Brunelli
 {
     public interface IBullet
     {
@@ -8,6 +8,6 @@ namespace DefaultNamespaceù
         void SetDamage(double value);
         bool IsShot();
         void fire();
-        EntityLevel.BulletType GetBulletType();
+        BulletType GetBulletType();
     }
 }

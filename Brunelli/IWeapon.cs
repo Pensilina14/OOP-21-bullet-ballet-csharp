@@ -1,5 +1,5 @@
-using OOP21_task_cSharp.Pioggia.IMutablePosition2D;
-using OOP21_task_cSharp.Rengo.EntityLevel;
+using OOP21_task_cSharp.Pioggia;
+using OOP21_task_cSharp.Rengo;
 
 namespace OOP21_task_cSharp.Brunelli
 {
@@ -19,13 +19,13 @@ namespace OOP21_task_cSharp.Brunelli
 
         int GetLimitChargers();//done
 
-        EntityLevel.BulletType? GetTypeOfBulletInUse();
-        EntityLevel.Weapons GetTypeOfWeapon();//done
+        BulletType? GetTypeOfBulletInUse();
+        WeaponType GetTypeOfWeapon();//done
 
-        void Mode();//done
-
-        void SetPosition(IMutablePosition2D newPos);//done
+        bool GetMode();//done
         
-        int IndexCharger();//done
+        void SetMode(bool value);
+        
+        void SetPosition(IMutablePosition2D newPos);//done
     }
 }

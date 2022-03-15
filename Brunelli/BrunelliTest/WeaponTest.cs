@@ -1,50 +1,50 @@
-using OOP21_bullet_ballet_cSharp.Brunelli;
 using OOP21_bullet_ballet_cSharp.Pioggia;
-using OOP21_bullet_ballet_cSharp.Rengo.EntityLevel;
-using OOP21_bullet_ballet_cSharp.Baiocchi;
+using OOP21_task_cSharp.Rengo;
 using NUnit.Framework;
+using OOP21_task_cSharp.Baiocchi;
+using OOP21_task_cSharp.Pioggia;
 
 namespace OOP21_task_cSharp.Brunelli.BrunelliTest
 {
-    [TestFixture]
+
     public class WeaponTest{
 
-        private readonly IDimension2D dimension = new Dimension2DCore(2,2);
-        private readonly ISpeedVector2D speedVector = new SpeedVector2DCore(new MutablePosition2D(0, 720), 1);
-        private readonly IGameEnvironment gameEnvironment = new GameEnvironment();
-        private const double mass = 5.0;
-        private const EntityLevel.WeaponType weaponType = EntityLevel.WeaponType.GUN;
+        private static readonly IDimension2D Dimension = new Dimension2DCore(2,2);
+        private static readonly ISpeedVector2D SpeedVector = new SpeedVector2DCore();
+        private static readonly IEnvironment GameEnvironment = new GameEnvironment();
+        private const double Mass = 5.0;
+        private const WeaponType WeaponType = Rengo.WeaponType.GUN;
 
-        private IWeapon weapon = new Weapon(weaponType, dimension, gameEnvironment, mass, speedVector);
+        private readonly IWeapon _weapon = new Weapon(WeaponType, Dimension, GameEnvironment, Mass, SpeedVector, GameEnvironment);
         
         [Test]
         public void TestHasAmmo()
         {
-            Assert.True(weapon.HasAmmo);
-            int numOfBullets = weapon.GetLimitBullets;
-            Assert.AreEqual(weapon.GetAmmoLeft, numOfBullets);
+            Assert.True(_weapon.HasAmmo());
+            int numOfBullets = _weapon.GetLimitBullets();
+            Assert.AreEqual(_weapon.GetAmmoLeft, numOfBullets);
         }
 
         [Test]
         public void TestRecharge()
         {
-            weapon.Recharge;
-            weapon.Recharge;
-            int numOfBullets = weapon.GetAmmoLeft;
-            Assert.AreEqual(weapon.TotalAmmo, numOfBullets);
+            _weapon.Recharge();
+            _weapon.Recharge();
+            int numOfBullets = _weapon.GetAmmoLeft();
+            Assert.AreEqual(_weapon.TotalAmmo, numOfBullets);
         }
 
         [Test]
         public void TestDecreaseAmmo()
         {
-            weapon.DecreaseAmmo;
-            bool check = weapon.GetAmmoLeft == weapon.GetLimitBullets;
+            _weapon.DecreaseAmmo();
+            bool check = _weapon.GetAmmoLeft == _weapon.GetLimitBullets;
             Assert.False(check);
         }
 
         public void TestTypeOfBulletInUse()
         {
-            Assert.AreEqual(weapon.GetTypeOfBulletInUse, EntityLevel.BulletType.CLASSIC);
+            Assert.AreEqual(_weapon.GetTypeOfBulletInUse, BulletType.CLASSIC);
         }
     }
 }
