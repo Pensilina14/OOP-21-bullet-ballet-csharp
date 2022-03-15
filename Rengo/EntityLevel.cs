@@ -26,9 +26,9 @@ namespace OOP21_task_cSharp.Rengo
 
     public enum WeaponType
     {
-        GUN = 10,
+        GUN = 6,
         AUTO = 4,
-        SHOTGUN = 15,
+        SHOTGUN = 8
     }
 
 }
