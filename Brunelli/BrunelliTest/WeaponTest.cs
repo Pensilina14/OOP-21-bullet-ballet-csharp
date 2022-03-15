@@ -20,40 +20,45 @@ namespace OOP21_task_cSharp.Brunelli.BrunelliTest
         [Test]
         public void TestHasAmmo()
         {
-            Assert.True(_weapon.HasAmmo());
-            int numOfBullets = _weapon.GetLimitBullets();
-            Assert.AreEqual(_weapon.GetAmmoLeft(), numOfBullets);
+            var weapon2 = _weapon;
+            Assert.True(weapon2.HasAmmo());
+            int numOfBullets = weapon2.GetLimitBullets();
+            Assert.AreEqual(weapon2.GetAmmoLeft(), numOfBullets);
         }
 
         [Test]
         public void TestRecharge()
         {
-            for (int i = 1; i < _weapon.GetLimitChargers(); i++)
+            IWeapon weapon3 = new Weapon(WeaponType, Dimension, Mass, SpeedVector, GameEnvironment);
+            for (int i = 1; i < weapon3.GetLimitChargers(); i++)
             {
-                _weapon.Recharge();
+                weapon3.Recharge();
             }
-            int numOfBullets = _weapon.GetAmmoLeft();
-            Assert.AreEqual(_weapon.TotalAmmo(), numOfBullets);
+            int numOfBullets = weapon3.GetAmmoLeft();
+            Assert.AreEqual(weapon3.TotalAmmo(), numOfBullets);
         }
 
         [Test]
         public void TestDecreaseAmmo()
         {
-            _weapon.DecreaseAmmo();
-            _weapon.DecreaseAmmo();
-            bool check = _weapon.GetAmmoLeft() == _weapon.GetLimitBullets();
+            IWeapon weapon4 = new Weapon(WeaponType, Dimension, Mass, SpeedVector, GameEnvironment);
+            weapon4.DecreaseAmmo();
+            weapon4.DecreaseAmmo();
+            bool check = weapon4.GetAmmoLeft() == weapon4.GetLimitBullets();
             Assert.True(check);
-            Assert.AreEqual(_weapon.GetAmmoLeft(), 6);
-            _weapon.SetMode(true);
-            _weapon.DecreaseAmmo();
-            _weapon.DecreaseAmmo();
-            bool check2 = _weapon.GetAmmoLeft() == _weapon.GetLimitBullets();
-            Assert.AreEqual(_weapon.GetAmmoLeft(), 4);
+            Assert.AreEqual(weapon4.GetAmmoLeft(), 6);
+            weapon4.SetMode(true);
+            weapon4.DecreaseAmmo();
+            weapon4.DecreaseAmmo();
+            bool check2 = weapon4.GetAmmoLeft() == weapon4.GetLimitBullets();
+            Assert.AreEqual(weapon4.GetAmmoLeft(), 4);
         }
-
+        
+        [Test]
         public void TestTypeOfBulletInUse()
         {
-            Assert.AreEqual(_weapon.GetTypeOfBulletInUse(), BulletType.CLASSIC);
+            IWeapon weapon5 = new Weapon(WeaponType, Dimension, Mass, SpeedVector, GameEnvironment);
+            Assert.AreEqual(weapon5.GetTypeOfBulletInUse(), BulletType.CLASSIC);
         }
     }
 }
