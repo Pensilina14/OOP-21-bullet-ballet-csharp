@@ -21,7 +21,7 @@ namespace OOP21_task_cSharp.Brunelli
         private readonly WeaponType _weaponType;
 		private double _damage;
 
-        public Weapon(WeaponType weaponType, IDimension2D dimension, IEnvironment gameEnv,
+        public Weapon(WeaponType weaponType, IDimension2D dimension,
             double mass, ISpeedVector2D vector, IEnvironment gameEnvironment) : base(vector, gameEnvironment, mass, dimension)
         {
             this._weaponType = weaponType;
@@ -30,6 +30,7 @@ namespace OOP21_task_cSharp.Brunelli
             this._currentAmmo = this.GetLimitBullets();
             this._mode = false;
             this._indexCharger = 0;
+            this._bandolier = new List<List<Bullet>>();
             InitializeWeapon();
         }
 
@@ -58,8 +59,7 @@ namespace OOP21_task_cSharp.Brunelli
 				charger.Add(new Bullet(speedVector, this.GetGameEnvironment(), BulletType.CLASSIC));
 			}
 			charger.ForEach(delegate(Bullet b) { b.SetDamage(this._damage); });
-            this._bandolier = new List<List<Bullet>>();
-			this._bandolier.Add(charger);
+            this._bandolier.Add(charger);
 			for ( int y = 1; y < this.GetLimitChargers(); y++)
 			{
 				this._bandolier.Add(new List<Bullet>());
@@ -95,7 +95,7 @@ namespace OOP21_task_cSharp.Brunelli
                     SwitchCharger();
                 }
                 this._currentAmmo--;
-                this._bandolier[this._indexCharger].RemoveAt(this._currentAmmo - 1);
+                this._bandolier[_indexCharger].RemoveAt(_currentAmmo);
             }
         }
 

@@ -15,36 +15,45 @@ namespace OOP21_task_cSharp.Brunelli.BrunelliTest
         private const double Mass = 5.0;
         private const WeaponType WeaponType = Rengo.WeaponType.GUN;
 
-        private readonly IWeapon _weapon = new Weapon(WeaponType, Dimension, GameEnvironment, Mass, SpeedVector, GameEnvironment);
+        private readonly IWeapon _weapon = new Weapon(WeaponType, Dimension, Mass, SpeedVector, GameEnvironment);
         
         [Test]
         public void TestHasAmmo()
         {
             Assert.True(_weapon.HasAmmo());
             int numOfBullets = _weapon.GetLimitBullets();
-            Assert.AreEqual(_weapon.GetAmmoLeft, numOfBullets);
+            Assert.AreEqual(_weapon.GetAmmoLeft(), numOfBullets);
         }
 
         [Test]
         public void TestRecharge()
         {
-            _weapon.Recharge();
-            _weapon.Recharge();
+            for (int i = 1; i < _weapon.GetLimitChargers(); i++)
+            {
+                _weapon.Recharge();
+            }
             int numOfBullets = _weapon.GetAmmoLeft();
-            Assert.AreEqual(_weapon.TotalAmmo, numOfBullets);
+            Assert.AreEqual(_weapon.TotalAmmo(), numOfBullets);
         }
 
         [Test]
         public void TestDecreaseAmmo()
         {
             _weapon.DecreaseAmmo();
-            bool check = _weapon.GetAmmoLeft == _weapon.GetLimitBullets;
-            Assert.False(check);
+            _weapon.DecreaseAmmo();
+            bool check = _weapon.GetAmmoLeft() == _weapon.GetLimitBullets();
+            Assert.True(check);
+            Assert.AreEqual(_weapon.GetAmmoLeft(), 6);
+            _weapon.SetMode(true);
+            _weapon.DecreaseAmmo();
+            _weapon.DecreaseAmmo();
+            bool check2 = _weapon.GetAmmoLeft() == _weapon.GetLimitBullets();
+            Assert.AreEqual(_weapon.GetAmmoLeft(), 4);
         }
 
         public void TestTypeOfBulletInUse()
         {
-            Assert.AreEqual(_weapon.GetTypeOfBulletInUse, BulletType.CLASSIC);
+            Assert.AreEqual(_weapon.GetTypeOfBulletInUse(), BulletType.CLASSIC);
         }
     }
 }
