@@ -14,16 +14,16 @@ namespace OOP_21_bullet_ballet_csharp.Pioggia.PioggiaTest
         [Test]
         public void TestMutablePosition2D()
         {
-            Assert.Equals(gameObject.GetPosition().GetX(), 0.0);
-            Assert.Equals(gameObject.GetPosition().GetY(), 720.0);
+            Assert.AreEqual(gameObject.GetPosition().GetX(), 0.0);
+            Assert.AreEqual(gameObject.GetPosition().GetY(), 720.0);
         }
 
         [Test]
         public void testMoveUp()
         {
-            bool isStill = gameObject.MoveUp(800);
+            bool isStill = !gameObject.MoveUp(800);
             Assert.True(isStill);
-            isStill = !gameObject.MoveUp(-800);
+            isStill = gameObject.MoveUp(-800);
             Assert.True(isStill);
         }
         
@@ -31,8 +31,8 @@ namespace OOP_21_bullet_ballet_csharp.Pioggia.PioggiaTest
         public void testMoveDown()
         {
             gameObject.MoveDown(500);
-            Assert.Equals(gameObject.GetPosition().GetX(), 0.0);
-            Assert.Equals(gameObject.GetPosition().GetY(), 1220.0);
+            Assert.AreEqual(gameObject.GetPosition().GetX(), 0.0);
+            Assert.AreEqual(gameObject.GetPosition().GetY(), 1221.0);
         }
         
         [Test]
