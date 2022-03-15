@@ -18,7 +18,6 @@ namespace OOP21_task_cSharp.Rengo
         private bool _blockedX;
 
         private Characters _playerType;
-        //TODO: private const ScoreSystem _currentScore;
 
         private static readonly Random s_rand = new Random();
         private const double s_max = 100.0;
@@ -77,19 +76,19 @@ namespace OOP21_task_cSharp.Rengo
                 case Characters.PLAYER1:
                     minHealth = 80.0;
                     this._name = "Player1";
-                    this._weapon = null; // Qui sarebbe Optional.empty();
+                    this._weapon = null; 
                     this._health = s_rand.Next((int)minHealth, (int)s_max);
                     break;
                 case Characters.PLAYER2:
                     minHealth = 65.0;
                     this._name = "Player2";
-                    this._weapon = null; // Qui sarebbe Optional.empty();
+                    this._weapon = null; 
                     this._health = s_rand.Next((int)minHealth, (int)s_max);
                     break;
                 case Characters.PLAYER3:
                     minHealth = 50.0;
                     this._name = "Player3";
-                    this._weapon = null; // Qui sarebbe Optional.empty();
+                    this._weapon = null; 
                     this._health = s_rand.Next((int)minHealth, (int)s_max);
                     break;
                 default:
@@ -147,7 +146,7 @@ namespace OOP21_task_cSharp.Rengo
             return this._weapon != null;
         }
 
-        public void UpdateState()
+        public new void UpdateState()
         {
             if(!this._blockedX)
             {
@@ -163,17 +162,15 @@ namespace OOP21_task_cSharp.Rengo
             return this._landed;
         }
 
-        public void Land()
+        public new void Land()
         {
             this._landed = true;
         }
 
-        public void ResetLanding()
+        public new void ResetLanding()
         {
             this._landed = false;
         }
-
-        //TODO: ScoreSystem
 
         public void BlockX()
         {

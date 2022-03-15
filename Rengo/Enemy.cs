@@ -28,8 +28,6 @@ namespace OOP21_task_cSharp.Rengo
             OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) : base(vector, environment, mass, dimension)
         {
 
-            //super(vector, environment, mass, dimension);
-
             this._name = name;
             this._health = health;
 
@@ -39,7 +37,6 @@ namespace OOP21_task_cSharp.Rengo
             OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, 
             double mass) : base(vector, environment, mass, dimension)
         {
-            //super(vector, environment, mass, dimension);
             this._enemyType = enemyType;
             SetEnemyType();
         }
@@ -47,7 +44,6 @@ namespace OOP21_task_cSharp.Rengo
         public Enemy(OOP21_task_cSharp.Pioggia.IDimension2D dimension,
             OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) : base(vector, environment, mass, dimension)
         {
-            //super(vector, environment, mass, dimension);
 
             SetRandomEnemy();
             SetEnemyType();
@@ -142,12 +138,12 @@ namespace OOP21_task_cSharp.Rengo
             return this._landed;
         }
 
-        public void Land()
+        public new void Land()
         {
             this._landed = true;
         }
 
-        public void ResetLanding()
+        public new void ResetLanding()
         {
             this._landed = false;
         }
