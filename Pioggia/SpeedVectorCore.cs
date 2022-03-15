@@ -10,7 +10,7 @@
             this._position = position;
             this._speed = speed;
         }
-
+        
         public IMutablePosition2D GetPosition()
         {
             return this._position;

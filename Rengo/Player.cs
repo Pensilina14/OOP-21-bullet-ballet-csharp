@@ -18,7 +18,6 @@ namespace OOP21_task_cSharp.Rengo
         private bool _blockedX;
 
         private Characters _playerType;
-
         private static readonly Random s_rand = new Random();
         private const double s_max = 100.0;
 

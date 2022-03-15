@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using NUnit.Framework;
 using OOP21_bullet_ballet_cSharp.Pioggia;
 using OOP21_task_cSharp.Baiocchi;
@@ -6,7 +6,6 @@ using OOP21_task_cSharp.Pioggia;
 
 namespace OOP_21_bullet_ballet_csharp.Pioggia.PioggiaTest
 {
-    [TestFixture]
     public class GameEntityTest
     {
         private IPhysicalObject gameObject = new GameEntity(new SpeedVector2DCore(new MutablePosition2DCore(0, 720), 1), new GameEnvironment(0, 720), 1
@@ -15,25 +14,25 @@ namespace OOP_21_bullet_ballet_csharp.Pioggia.PioggiaTest
         [Test]
         public void TestMutablePosition2D()
         {
-            Assert.AreEqual(gameObject.GetPosition().GetX(), 0.0);
-            Assert.AreEqual(gameObject.GetPosition().GetY(), 720.0);
+            Assert.Equals(gameObject.GetPosition().GetX(), 0.0);
+            Assert.Equals(gameObject.GetPosition().GetY(), 720.0);
         }
 
         [Test]
         public void testMoveUp()
         {
             bool isStill = gameObject.MoveUp(800);
-            Assert.True(!isStill);
-            isStill = gameObject.MoveUp(-800);
+            Assert.True(isStill);
+            isStill = !gameObject.MoveUp(-800);
             Assert.True(isStill);
         }
         
         [Test]
         public void testMoveDown()
         {
-            gameObject.MoveDown(500.0);
-            Assert.AreEqual(gameObject.GetPosition().GetX(), 0.0);
-            Assert.AreEqual(gameObject.GetPosition().GetY(), 1221.0);
+            gameObject.MoveDown(500);
+            Assert.Equals(gameObject.GetPosition().GetX(), 0.0);
+            Assert.Equals(gameObject.GetPosition().GetY(), 1220.0);
         }
         
         [Test]

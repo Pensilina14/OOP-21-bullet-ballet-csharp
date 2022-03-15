@@ -6,6 +6,7 @@ using OOP21_task_cSharp.Rengo;
 using OOP21_bullet_ballet_cSharp.Pioggia;
 using OOP21_task_cSharp.Pioggia;
 using OOP21_task_cSharp.Baiocchi;
+using OOP_21_bullet_ballet_csharp.Pioggia;
 
 namespace OOP21_task_cSharp.Rengo.RengoTest
 {
@@ -14,7 +15,7 @@ namespace OOP21_task_cSharp.Rengo.RengoTest
     {
 
         private static readonly Dimension2DCore s_dimension = new Dimension2DCore(2,2);
-        private static readonly SpeedVector2DCore s_speedVector = new SpeedVector2DCore();
+        private static readonly SpeedVector2DCore s_speedVector = new SpeedVector2DCore(new MutablePosition2DCore(0, 720), 1);
         private static readonly GameEnvironment s_gameEnvironment = new GameEnvironment();
 
         private const double mass = 10.0;
