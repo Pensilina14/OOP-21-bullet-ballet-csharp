@@ -1,6 +1,8 @@
 using OOP21_task_cSharp.Rengo;
 using OOP21_task_cSharp.Baiocchi;
 using OOP21_task_cSharp.Pioggia;
+using System;
+using System.Collections.Generic;
 
 
 namespace OOP21_task_cSharp.Brunelli
@@ -17,7 +19,7 @@ namespace OOP21_task_cSharp.Brunelli
         private bool _mode;
         private int _currentAmmo;
         private int _indexCharger;
-        private List<List<Bullet>> _bandolier;
+        private IList<List<Bullet>> _bandolier;
         private readonly WeaponType _weaponType;
 		private double _damage;
 
