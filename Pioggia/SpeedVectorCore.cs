@@ -28,7 +28,7 @@
 
         public void VectorSum(double x, double y)
         {
-            this.NoSpeedVectorSum(x * this._speed, y + this._speed);
+            this.NoSpeedVectorSum(x * this._speed, y * this._speed);
         }
     }
 }
