@@ -1,18 +1,14 @@
-namespace DefaultNamespace;
+using OOP21_task_cSharp.Rengo;
+using System;
 
-public interface IBullet
+namespace OOP21_task_cSharp.Brunelli
 {
-    enum BulletType
+    public interface IBullet
     {
-        CLASSIC("Classic"),
-        TOXIC("Toxic"),
-        SOPORIFIC("Soporific")
-    };
-
-    string Name();
-    double Damage();
-    bool IsShot();
-    void fire();
-    BulletType BulletType();
-    
+        double GetDamage();
+        
+        void SetDamage(double value);
+        
+        BulletType GetBulletType();
+    }
 }

@@ -18,39 +18,37 @@ namespace OOP21_task_cSharp.Rengo
         private bool _blockedX;
 
         private Characters _playerType;
-        //TODO: private const ScoreSystem _currentScore;
-
-        private const Random s_rand = new Random();
+        private static readonly Random s_rand = new Random();
         private const double s_max = 100.0;
 
-        public Player(string name, OOP21_task_cSharp.Pioggia.Dimension2D dimension,
-            OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) 
+        public Player(string name, OOP21_task_cSharp.Pioggia.IDimension2D dimension,
+            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) : base(vector, environment, mass, dimension)
         {
             this._name = name;
             this._health = 100.0;
-            this._weapon = empty;
+            this._weapon = null;
         }
 
-        public Player(string name, double health, OOP21_task_cSharp.Pioggia.Dimension2D dimension,
-            OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) 
+        public Player(string name, double health, OOP21_task_cSharp.Pioggia.IDimension2D dimension,
+            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) : base(vector, environment, mass, dimension)
         {
             this._name = name;
             this._health = health;
-            this._weapon = empty;
+            this._weapon = null;
         }
 
-        public Player(EntityList playerType, OOP21_task_cSharp.Pioggia.Dimension2D dimension,
-            OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment,
-            double mass) 
+        public Player(Characters playerType, OOP21_task_cSharp.Pioggia.IDimension2D dimension,
+            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment,
+            double mass) : base(vector, environment, mass, dimension)
         {
             this._playerType = playerType;
 
             SetPlayerType();
         }
 
-        public Player(OOP21_task_cSharp.Pioggia.Dimension2D dimension,
-            OOP21_task_cSharp.Pioggia.SpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment,
-            double mass) 
+        public Player(OOP21_task_cSharp.Pioggia.IDimension2D dimension,
+            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment,
+            double mass) : base(vector, environment, mass, dimension)
         {
             SetRandomPlayer();
             SetPlayerType();
@@ -58,12 +56,12 @@ namespace OOP21_task_cSharp.Rengo
 
         private void SetRandomPlayer()
         {
-            const int max = Enum.GetNames(typeof(Characters)).Length;
+            int max = Enum.GetNames(typeof(Characters)).Length;
 
-            const int randomPlayer = s_rand.Next(max);
+            int randomPlayer = s_rand.Next(max);
             foreach( Characters p in Enum.GetValues(typeof(Characters)))
             {
-                if(randomPlayer == Enum.GetValues(p.GetType()).GetValue()) 
+                if (randomPlayer == (int)p)
                 {
                     this._playerType = p;
                 }
@@ -77,20 +75,20 @@ namespace OOP21_task_cSharp.Rengo
                 case Characters.PLAYER1:
                     minHealth = 80.0;
                     this._name = "Player1";
-                    this._weapon = null; // Qui sarebbe Optional.empty();
-                    this._health = s_rand.Next(minHealth, s_max);
+                    this._weapon = null; 
+                    this._health = s_rand.Next((int)minHealth, (int)s_max);
                     break;
                 case Characters.PLAYER2:
                     minHealth = 65.0;
                     this._name = "Player2";
-                    this._weapon = null; // Qui sarebbe Optional.empty();
-                    this._health = s_rand.Next(minHealth, s_max);
+                    this._weapon = null; 
+                    this._health = s_rand.Next((int)minHealth, (int)s_max);
                     break;
                 case Characters.PLAYER3:
                     minHealth = 50.0;
                     this._name = "Player3";
-                    this._weapon = null; // Qui sarebbe Optional.empty();
-                    this._health = s_rand.Next(minHealth, s_max);
+                    this._weapon = null; 
+                    this._health = s_rand.Next((int)minHealth, (int)s_max);
                     break;
                 default:
                     break;
@@ -147,7 +145,7 @@ namespace OOP21_task_cSharp.Rengo
             return this._weapon != null;
         }
 
-        public void UpdateState()
+        public new void UpdateState()
         {
             if(!this._blockedX)
             {
@@ -163,17 +161,15 @@ namespace OOP21_task_cSharp.Rengo
             return this._landed;
         }
 
-        public void Land()
+        public new void Land()
         {
             this._landed = true;
         }
 
-        public void ResetLanding()
+        public new void ResetLanding()
         {
             this._landed = false;
         }
-
-        //TODO: ScoreSystem
 
         public void BlockX()
         {

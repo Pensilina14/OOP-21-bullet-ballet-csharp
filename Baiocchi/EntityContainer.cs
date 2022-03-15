@@ -58,9 +58,9 @@ namespace OOP21_task_cSharp.Baiocchi
                 {
                     foreach (GameEntity entity in entry.Value)
                     {
-                        if (entity is WeaponImpl)
+                        if (entity is Weapon)
                         {
-                            weapons.Add(entity as WeaponImpl);
+                            weapons.Add(entity as Weapon);
                         }
                     }
                 }
@@ -86,7 +86,7 @@ namespace OOP21_task_cSharp.Baiocchi
             return false;
         }
 
-        public bool AddWeapon(WeaponImpl weapon)
+        public bool AddWeapon(Weapon weapon)
         {
             foreach (KeyValuePair<GameEntities, IList<GameEntity>?> entry in this.GetContainer())
             {

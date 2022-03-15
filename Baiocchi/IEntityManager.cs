@@ -45,7 +45,7 @@ namespace OOP21_task_cSharp.Baiocchi
         /// </summary>
         /// <param name="weapon"></param>
         /// <returns>true if operation was successful, false otherwise.</returns>
-        bool AddWeapon(WeaponImpl weapon);
+        bool AddWeapon(Weapon weapon);
         /// <summary>
         /// Returns a <see cref="IList"/> of all the game entities.
         /// </summary>

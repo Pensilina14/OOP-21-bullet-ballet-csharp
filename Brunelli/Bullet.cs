@@ -1,46 +1,30 @@
-using OOP21_task_cSharp.Rengo.EntityLevel;
-using OOP21_task_cSharp.Pioggia.*;
-using OOP21_task_cSharp.Baiocchi.IEnvironment;
+using OOP21_bullet_ballet_cSharp.Pioggia;
+using OOP21_task_cSharp.Pioggia;
+using OOP21_task_cSharp.Baiocchi;
+using OOP21_task_cSharp.Rengo;
+using System;
 
-namespace OOP21_task_cSharp.Brunelli;
-
-public class Bullet : IBullet, OOP21_task_cSharp.Pioggia.GameEntity
+namespace OOP21_task_cSharp.Brunelli
 {
-	private readonly static double _DAMAGE = 10.0;
-	private readonly string _name;
-	private bool _fired;
-	private EntityLevel.BulletType _bulletType;
-
-	public Bullet(ISpeedVector2D vector, IEnvironment gameEnvironment, double mass
-		, IDimension2D dimension, EntityLevel.BulletType bulletType)
+	public class Bullet : GameEntity, IBullet 
 	{
-		base(vector, gameEnvironment, mass, dimension);
-		this._fired = false;
-		this._bulletType = bulletType;
+		private static readonly double _FACTOR = 10.0;
+		protected static readonly double _MASS = 2.5;
+		private static readonly IDimension2D Dimension = new Dimension2DCore(1, 1);
+		private double _damage;
+		private BulletType _bulletType;
+
+		public Bullet(ISpeedVector2D vector, IEnvironment gameEnvironment
+			, BulletType bulletType) : base(vector, gameEnvironment, _MASS, Dimension)
+		{
+			this._bulletType = bulletType;
+			this._damage = _FACTOR;
+		}
+		
+		public double GetDamage() => this._damage;
+
+    	public void SetDamage(double value) => this._damage = value;
+
+        public BulletType GetBulletType() => this._bulletType;
 	}
-
-	public string Name()
-    {
-        return this._name;
-    }
-
-    public double Damage()
-    {
-        return _DAMAGE;
-    }
-       
-    public bool IsShot()
-    {
-        return this._fired;
-    }
-
-	public void Fire()
-	{
-		this._fired = true;
-	}
-
-    public BulletType()
-    {
-        return this._bulletType;
-    }
 }

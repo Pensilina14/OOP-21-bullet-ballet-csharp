@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using NUnit.Framework;
 using OOP21_bullet_ballet_cSharp.Pioggia;
 using OOP21_task_cSharp.Baiocchi;

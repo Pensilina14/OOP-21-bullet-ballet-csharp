@@ -1,33 +1,32 @@
+using OOP21_task_cSharp.Pioggia;
+using OOP21_task_cSharp.Rengo;
+using System;
+
 namespace OOP21_task_cSharp.Brunelli
 {
-    public interface Weapon
+    public interface IWeapon
     {
-        int AmmoLeft();
+        int GetAmmoLeft();//done
 
-        int TotalAmmo();
+        int TotalAmmo();//done
 
-        void DecreaseAmmo();
+        void DecreaseAmmo();//done
 
-        bool HasAmmo();
+        bool HasAmmo();//done
 
-        string Name();///done
+        void Recharge();//done
 
-        void Recharge(List<Bullet> charher);
+        int GetLimitBullets();//done
 
-        void SmartRecharge();
+        int GetLimitChargers();//done
 
-        int LimitBullets();///done
+        BulletType? GetTypeOfBulletInUse();
+        WeaponType GetTypeOfWeapon();//done
 
-        int LimitChargers();///done
-
-        Optional<BulletType> TypeOfBulletInUse();
-
-        EntityList.Weapons TypeOfWeapon();///done
-
-        void Mode();///done
-
-        void Position(OOP21_task_cSharp.Pioggia.IMutablePosition2D newPos);///done
+        bool GetMode();//done
         
-        int IndexCharger();///done
+        void SetMode(bool value);
+        
+        void SetPosition(IMutablePosition2D newPos);//done
     }
 }
