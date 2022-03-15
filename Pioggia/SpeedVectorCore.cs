@@ -5,6 +5,12 @@
         private readonly IMutablePosition2D _position;
         private readonly double _speed;
 
+        public SpeedVector2DCore(IMutablePosition2D position, double speed)
+        {
+            this._position = position;
+            this._speed = speed;
+        }
+
         public IMutablePosition2D GetPosition()
         {
             return this._position;
