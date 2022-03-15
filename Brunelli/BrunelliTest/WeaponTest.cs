@@ -1,6 +1,7 @@
 using OOP21_bullet_ballet_cSharp.Pioggia;
 using OOP21_task_cSharp.Rengo;
 using NUnit.Framework;
+using OOP_21_bullet_ballet_csharp.Pioggia;
 using OOP21_task_cSharp.Baiocchi;
 using OOP21_task_cSharp.Pioggia;
 
@@ -10,7 +11,7 @@ namespace OOP21_task_cSharp.Brunelli.BrunelliTest
     public class WeaponTest{
 
         private static readonly IDimension2D Dimension = new Dimension2DCore(2,2);
-        private static readonly ISpeedVector2D SpeedVector = new SpeedVector2DCore();
+        private static readonly ISpeedVector2D SpeedVector = new SpeedVector2DCore(new MutablePosition2DCore(0, 0), 1);
         private static readonly IEnvironment GameEnvironment = new GameEnvironment();
         private const double Mass = 5.0;
         private const WeaponType WeaponType = Rengo.WeaponType.GUN;

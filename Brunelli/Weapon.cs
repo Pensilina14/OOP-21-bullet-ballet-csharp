@@ -3,6 +3,7 @@ using OOP21_task_cSharp.Baiocchi;
 using OOP21_task_cSharp.Pioggia;
 using System;
 using System.Collections.Generic;
+using OOP_21_bullet_ballet_csharp.Pioggia;
 
 
 namespace OOP21_task_cSharp.Brunelli
@@ -55,7 +56,7 @@ namespace OOP21_task_cSharp.Brunelli
 			
 			var charger = new List<Bullet>();
 			
-            var speedVector = new SpeedVector2DCore();
+            var speedVector = new SpeedVector2DCore(new MutablePosition2DCore(GetPosition().GetX(), GetPosition().GetY()), GetSpeedVector().GetSpeed());
 			for ( int i = 0; i < GetLimitBullets(); i++)
 			{
 				charger.Add(new Bullet(speedVector, this.GetGameEnvironment(), BulletType.CLASSIC));
