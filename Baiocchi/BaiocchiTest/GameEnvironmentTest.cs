@@ -15,14 +15,14 @@ namespace OOP21_task_cSharp.Baiocchi.BaiocchiTest
         [Test]
         public void TestGravity()
         {
-            Assert.Equals(1.0, _env.getGravity());
+            Assert.AreEqual(1.0, _env.getGravity());
         }
 
         [Test]
         public void TestDimension()
         {
             IDimension2D expectedDimension = new Dimension2DCore(DEFAULT_DIM, DEFAULT_DIM);
-            Assert.Equals(expectedDimension, _env);
+            Assert.AreEqual(expectedDimension, _env);
         }
     }
 }
