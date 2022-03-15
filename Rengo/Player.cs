@@ -24,7 +24,7 @@ namespace OOP21_task_cSharp.Rengo
         private const double s_max = 100.0;
 
         public Player(string name, OOP21_task_cSharp.Pioggia.IDimension2D dimension,
-            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) 
+            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) : base(vector, environment, mass, dimension)
         {
             this._name = name;
             this._health = 100.0;
@@ -32,7 +32,7 @@ namespace OOP21_task_cSharp.Rengo
         }
 
         public Player(string name, double health, OOP21_task_cSharp.Pioggia.IDimension2D dimension,
-            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) 
+            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) : base(vector, environment, mass, dimension)
         {
             this._name = name;
             this._health = health;
@@ -41,7 +41,7 @@ namespace OOP21_task_cSharp.Rengo
 
         public Player(Characters playerType, OOP21_task_cSharp.Pioggia.IDimension2D dimension,
             OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment,
-            double mass) 
+            double mass) : base(vector, environment, mass, dimension)
         {
             this._playerType = playerType;
 
@@ -50,7 +50,7 @@ namespace OOP21_task_cSharp.Rengo
 
         public Player(OOP21_task_cSharp.Pioggia.IDimension2D dimension,
             OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment,
-            double mass) 
+            double mass) : base(vector, environment, mass, dimension)
         {
             SetRandomPlayer();
             SetPlayerType();

@@ -13,9 +13,9 @@ namespace OOP21_task_cSharp.Rengo.RengoTest
     public class CharactersTest
     {
 
-        private static Dimension2DCore s_dimension = new Dimension2DCore(2,2);
-        private static SpeedVector2DCore s_speedVector = new SpeedVector2DCore();
-        private static GameEnvironment s_gameEnvironment = new GameEnvironment();
+        private static readonly Dimension2DCore s_dimension = new Dimension2DCore(2,2);
+        private static readonly SpeedVector2DCore s_speedVector = new SpeedVector2DCore();
+        private static readonly GameEnvironment s_gameEnvironment = new GameEnvironment();
 
         private const double mass = 10.0;
         private const double health = 100.0;
@@ -23,8 +23,8 @@ namespace OOP21_task_cSharp.Rengo.RengoTest
         private const string playerName = "Luigi";
         private const string enemyName = "Mario";
 
-        private Player player = new Player(playerName, health, s_dimension, s_speedVector, s_gameEnvironment, mass);
-        private Enemy enemy = new Enemy(enemyName, health, s_dimension, s_speedVector, s_gameEnvironment, mass);
+        private readonly Player player = new Player(playerName, health, s_dimension, s_speedVector, s_gameEnvironment, mass);
+        private readonly Enemy enemy = new Enemy(enemyName, health, s_dimension, s_speedVector, s_gameEnvironment, mass);
 
         [Test]
         public void TestPlayer()

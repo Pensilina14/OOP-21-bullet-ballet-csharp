@@ -25,7 +25,7 @@ namespace OOP21_task_cSharp.Rengo
         private readonly double _enemyRange = GetRandomRange();
 
         public Enemy(string name, double health, OOP21_task_cSharp.Pioggia.IDimension2D dimension, 
-            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass)
+            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) : base(vector, environment, mass, dimension)
         {
 
             //super(vector, environment, mass, dimension);
@@ -37,7 +37,7 @@ namespace OOP21_task_cSharp.Rengo
 
         public Enemy(Characters enemyType, OOP21_task_cSharp.Pioggia.IDimension2D dimension,
             OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, 
-            double mass)
+            double mass) : base(vector, environment, mass, dimension)
         {
             //super(vector, environment, mass, dimension);
             this._enemyType = enemyType;
@@ -45,7 +45,7 @@ namespace OOP21_task_cSharp.Rengo
         }
 
         public Enemy(OOP21_task_cSharp.Pioggia.IDimension2D dimension,
-            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass)
+            OOP21_task_cSharp.Pioggia.ISpeedVector2D vector, OOP21_task_cSharp.Baiocchi.IEnvironment environment, double mass) : base(vector, environment, mass, dimension)
         {
             //super(vector, environment, mass, dimension);
 
