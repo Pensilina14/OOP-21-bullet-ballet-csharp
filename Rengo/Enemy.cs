@@ -155,11 +155,11 @@ namespace OOP21_task_cSharp.Rengo
 
         public bool IsPlayerInRange(int enemyIndex)
         {
-            double xPlayer = this.GetGameEnvironment().getEntityManager().GetPlayer().GetPosition().GetX();
-            double yPlayer = this.GetGameEnvironment().getEntityManager().GetPlayer().GetPosition().GetX();
+            double xPlayer = this.GetGameEnvironment().GetEntityManager().GetPlayer().GetPosition().GetX();
+            double yPlayer = this.GetGameEnvironment().GetEntityManager().GetPlayer().GetPosition().GetX();
 
-            double xEnemy = this.GetGameEnvironment().getEntityManager().GetEnemies()[enemyIndex].GetPosition().GetX();
-            double yEnemy = this.GetGameEnvironment().getEntityManager().GetEnemies()[enemyIndex].GetPosition().GetY();
+            double xEnemy = this.GetGameEnvironment().GetEntityManager().GetEnemies()[enemyIndex].GetPosition().GetX();
+            double yEnemy = this.GetGameEnvironment().GetEntityManager().GetEnemies()[enemyIndex].GetPosition().GetY();
 
             double distance = Math.Sqrt((xPlayer - xEnemy) + (yPlayer - yEnemy));
 

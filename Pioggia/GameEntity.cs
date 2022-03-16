@@ -48,7 +48,7 @@ namespace OOP21_task_cSharp.Pioggia
         public bool MoveLeft(double x) => this.Move(this.GetPosition().GetX() - x - this.GetDimension().GetWidth() >= 0, x, 0);
 
         public bool MoveRight(double x) => this.Move(this.GetPosition().GetX() + x + this.GetDimension().GetWidth()
-                <= this._gameEnvironment.getDimension().GetWidth(), x, 0);
+                <= this._gameEnvironment.GetDimension().GetWidth(), x, 0);
 
         public IMutablePosition2D GetPosition()
         {
@@ -61,7 +61,7 @@ namespace OOP21_task_cSharp.Pioggia
         }
 
         public bool MoveUp(double y) => this.Move(this.GetPosition().GetY() - y - this.GetDimension().GetHeight()
-                                                  >= this._gameEnvironment.getDimension().GetHeight(), 0, y);
+                                                  >= this._gameEnvironment.GetDimension().GetHeight(), 0, y);
 
         private bool Move(bool condition, double x, double y)
         {

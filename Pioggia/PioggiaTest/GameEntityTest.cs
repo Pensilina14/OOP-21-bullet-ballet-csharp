@@ -39,10 +39,10 @@ namespace OOP_21_bullet_ballet_csharp.Pioggia.PioggiaTest
         public void testMoveRight()
         {
             bool isStill = !gameObject.MoveRight(gameObject.GetGameEnvironment()
-                .getDimension().GetWidth());
+                .GetDimension().GetWidth());
             Assert.True(isStill);
             bool isMoving = gameObject.MoveRight(gameObject.GetGameEnvironment()
-                .getDimension().GetWidth() - this.gameObject.GetDimension().GetWidth());
+                .GetDimension().GetWidth() - this.gameObject.GetDimension().GetWidth());
             Assert.True(isMoving);
         }
         
