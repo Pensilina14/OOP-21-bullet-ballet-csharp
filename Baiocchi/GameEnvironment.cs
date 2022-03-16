@@ -33,22 +33,22 @@ namespace OOP21_task_cSharp.Baiocchi
             _entities = container;
         }
 
-        public double getGravity()
+        public double GetGravity()
         {
             return _gravity;
         }
 
-        public IDimension2D getDimension()
+        public IDimension2D GetDimension()
         {
             return _dimension;
         }
 
-        public IEntityManager getEntityManager()
+        public IEntityManager GetEntityManager()
         {
             return _entities;
         }
 
-        public bool deleteObjByPosition(IMutablePosition2D targetPos)
+        public bool DeleteObjByPosition(IMutablePosition2D targetPos)
         {
             return _entities.DeleteEntity(targetPos);
         }

@@ -12,22 +12,22 @@ namespace OOP21_task_cSharp.Baiocchi
         /// Getter for Environment's gravity.
         /// </summary>
         /// <returns>Environment's gravity.</returns>
-        double getGravity();
+        double GetGravity();
         /// <summary>
         /// Getter for Environment's dimensions.
         /// </summary>
         /// <returns>Environment's dimensions.</returns>
-        IDimension2D getDimension();
+        IDimension2D GetDimension();
         /// <summary>
         /// Return the EntityManager used by this environment.
         /// </summary>
         /// <returns>an EntityManager</returns>
-        IEntityManager getEntityManager();
+        IEntityManager GetEntityManager();
         /// <summary>
         /// The <see cref="Pioggia.PhysicalObject"/> to be deleted is first searched and then removed.
         /// </summary>
         /// <param name="targetPos">PhysicalObject to delete.</param>
         /// <returns>true if operation had success, false otherwise.</returns>
-        bool deleteObjByPosition(IMutablePosition2D targetPos);
+        bool DeleteObjByPosition(IMutablePosition2D targetPos);
     }
 }

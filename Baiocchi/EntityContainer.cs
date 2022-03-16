@@ -19,13 +19,16 @@ namespace OOP21_task_cSharp.Baiocchi
     {
         public Player? GetPlayer()
         {
-            IList<GameEntity>? player = 
-                   (from entry in this.GetContainer()
-                    where entry.Key == GameEntities.PLAYER
-                    select entry.Value).ElementAt(0);
-            if (player != null && player[0] is Player)
+            if (this.GetContainer()[GameEntities.PLAYER].Count > 0)
             {
-                return player[0] as Player;
+                IList<GameEntity>? player = 
+                    (from entry in this.GetContainer() 
+                        where entry.Key == GameEntities.PLAYER
+                        select entry.Value).ElementAt(0);
+                if (player != null && player[0] is Player)
+                {
+                    return player[0] as Player;
+                }
             }
             return null;
         }
@@ -70,7 +73,7 @@ namespace OOP21_task_cSharp.Baiocchi
 
         public void SetPlayer(Player player)
         {
-            this.GetContainer().First().Value[0] = player;
+            this.GetContainer().First().Value.Add(player);
         }
 
         public bool AddEnemy(Enemy enemy)
