@@ -14,16 +14,20 @@ namespace OOP_21_bullet_ballet_csharp.Pioggia.PioggiaTest
         [Test]
         public void TestMutablePosition2D()
         {
-            Assert.AreEqual(gameObject.GetPosition().GetX(), 0.0);
-            Assert.AreEqual(gameObject.GetPosition().GetY(), 720.0);
+            var entity = new GameEntity(new SpeedVector2DCore(new MutablePosition2DCore(0, 720), 1), new GameEnvironment(0, 720), 1
+                , new Dimension2DCore(2, 2));
+            Assert.AreEqual(entity.GetPosition().GetX(), 0.0);
+            Assert.AreEqual(entity.GetPosition().GetY(), 720.0);
         }
 
         [Test]
         public void testMoveUp()
         {
-            bool isStill = !gameObject.MoveUp(800);
+            var entity = new GameEntity(new SpeedVector2DCore(new MutablePosition2DCore(0, 720), 1), new GameEnvironment(0, 720), 1
+                , new Dimension2DCore(2, 2));
+            bool isStill = !entity.MoveUp(800);
             Assert.True(isStill);
-            isStill = gameObject.MoveUp(-800);
+            isStill = entity.MoveUp(-800);
             Assert.True(isStill);
         }
         
@@ -32,17 +36,19 @@ namespace OOP_21_bullet_ballet_csharp.Pioggia.PioggiaTest
         {
             gameObject.MoveDown(500);
             Assert.AreEqual(gameObject.GetPosition().GetX(), 0.0);
-            Assert.AreEqual(gameObject.GetPosition().GetY(), 1221.0);
+            Assert.AreEqual(gameObject.GetPosition().GetY(), 1220.0);
         }
         
         [Test]
         public void testMoveRight()
         {
-            bool isStill = !gameObject.MoveRight(gameObject.GetGameEnvironment()
+            var entity = new GameEntity(new SpeedVector2DCore(new MutablePosition2DCore(0, 720), 1), new GameEnvironment(0, 720), 1
+                , new Dimension2DCore(2, 2));
+            bool isStill = !entity.MoveRight(entity.GetGameEnvironment()
                 .GetDimension().GetWidth());
             Assert.True(isStill);
-            bool isMoving = gameObject.MoveRight(gameObject.GetGameEnvironment()
-                .GetDimension().GetWidth() - this.gameObject.GetDimension().GetWidth());
+            bool isMoving = entity.MoveRight(entity.GetGameEnvironment()
+                .GetDimension().GetWidth() - entity.GetDimension().GetWidth());
             Assert.True(isMoving);
         }
         
